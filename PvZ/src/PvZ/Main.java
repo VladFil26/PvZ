@@ -26,9 +26,9 @@ public class Main {
 	 
 
 	//	setLayout(new BorderLayout);
-		c.gridheight=6;
-		c.gridwidth=10;
-	contentPane.add( new JLabel(imageBackground),c); 
+		//c.gridheight=6;
+		//c.gridwidth=10;
+	//contentPane.add( new JLabel(imageBackground),c); 
 		c.gridy=0;
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
@@ -37,8 +37,8 @@ public class Main {
 			menu[i].setPreferredSize(new Dimension(90, 90));	
 			
 			contentPane.add(menu[i], c);
-			c.gridheight=1;
-			c.gridwidth=1;
+		//	c.gridheight=1;
+		//	c.gridwidth=1;
 
 		}
 	
@@ -50,8 +50,8 @@ public class Main {
 		 	
 			c.gridy = i+1;
 			for (int j = 0; j < board[0].length; j++) {
-				c.gridheight=1;
-				c.gridwidth=1;
+				//c.gridheight=1;
+			//	c.gridwidth=1;
 				board[i][j] = new JButton();
 				board[i][j].setPreferredSize(new Dimension(90, 90));
 				c.gridx = j;
