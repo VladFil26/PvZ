@@ -112,5 +112,18 @@ public class Main {
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
 		
+		//Arrays
+		int[][] zombieArray;
+		int[][] peaArray;
+		int[][] peashooterArray;
+		int[][] wallnutArray;
+		int[][] potatoArray;
+		
+		zombieArray = new int[5][9];
+		peaArray = new int[5][9];
+		peashooterArray = new int[5][9];
+		wallnutArray = new int[5][9];
+		potatoArray = new int[5][9];
+		
 	}
 }
