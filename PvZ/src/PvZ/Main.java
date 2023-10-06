@@ -8,11 +8,10 @@ public class Main {
 	static int choise;
 
 	public static void main(String[] args) {
-		JFrame frame, winframe;
+		JFrame frame, instructionframe;
 		JButton[] menu = new JButton[4];
 		JButton[][] board = new JButton[5][9];
 		JPanel contentPane;
-
 		frame = new JFrame("PvZ");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
@@ -51,14 +50,12 @@ public class Main {
 			// c.gridwidth=1;
 
 		}
-
 		menu[0].setIcon(imagePeaShooter);
 		menu[1].setIcon(imageWallNut);
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
 
 		for (int i = 0; i < board.length; i++) {// create board
-
 			c.gridy = i + 1;
 			for (int j = 0; j < board[0].length; j++) {
 				// c.gridheight=1;
@@ -67,11 +64,9 @@ public class Main {
 				board[i][j].setPreferredSize(new Dimension(90, 90));
 				c.gridx = j;
 				board[i][j].setIcon(imageTile);
-
 				contentPane.add(board[i][j], c);
 			}
 		}
-
 		for (int i = 0; i < menu.length; i++) {
 			menu[i].setActionCommand(b[i]);
 			menu[i].addActionListener(new ActionListener() {
@@ -82,7 +77,6 @@ public class Main {
 				}
 			});
 		}
-
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j].setActionCommand(a[i][j]);
@@ -90,12 +84,10 @@ public class Main {
 					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
-						
 							switch (choise) {
 							case 0:
 								if (board[x][y].getIcon() == imageTile) 
 								board[x][y].setIcon(imagePeaShooter);
-								
 								// choise = -1;
 								break;
 							case 1:
@@ -119,13 +111,10 @@ public class Main {
 							choise = -1;
 
 						}
-					
 				});
 			}
 		}
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
-
 	}
-
 }

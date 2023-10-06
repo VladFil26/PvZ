@@ -23,7 +23,7 @@ public class Peashooter {
 	/**
 	 * method for shooting bullet
 	 */
-	public int shootBullet() {
-		
-	}
+	//public int shootBullet() {
+	//	
+	//}
 }
