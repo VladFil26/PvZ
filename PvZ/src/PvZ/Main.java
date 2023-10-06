@@ -20,6 +20,11 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		contentPane = new JPanel(new GridBagLayout());
 		
+		//For Timer
+		Timer timer;
+		JLabel timerLabel;
+		int speed = 500;
+		int num = 0;
 		
 		//instructionframe.setLocationRelativeTo(null);
 		
@@ -118,6 +123,23 @@ public class Main {
 				});
 			}
 		}
+		
+		//Timer
+		timerLabel = new JLabel("Timer");
+		timerLabel.setVisible(false);
+		timer = new Timer(speed, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timerLabel.setText(String.valueOf(num));
+				num = num + 1;
+				
+				
+				//All the interactions will go here
+			}
+		});
+	
+		
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
 
