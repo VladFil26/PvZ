@@ -42,9 +42,7 @@ public class Main {
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
 			menu[i] = new JButton();
-
 			menu[i].setPreferredSize(new Dimension(90, 90));
-
 			contentPane.add(menu[i], c);
 			// c.gridheight=1;
 			// c.gridwidth=1;
@@ -88,17 +86,14 @@ public class Main {
 							case 0:
 								if (board[x][y].getIcon() == imageTile) 
 								board[x][y].setIcon(imagePeaShooter);
-								// choise = -1;
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile) 
 								board[x][y].setIcon(imageWallNut);
-								// choise = -1;
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile) 
 								board[x][y].setIcon(imagePotatoMine);
-								// choise = -1;
 								break;
 							case 3:
 								if (board[x][y].getIcon() != imageTile) 
@@ -116,5 +111,6 @@ public class Main {
 		}
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
+		
 	}
 }
