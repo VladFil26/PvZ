@@ -1,4 +1,4 @@
-//Kinzie F
+//Kinzie Friesen
 //Oct 5, 2023
 //This is a class for the peashooter plant in the PvZ simulation
 
