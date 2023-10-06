@@ -8,18 +8,24 @@ public class Main {
 	static int choise;
 
 	public static void main(String[] args) {
-		JFrame frame, instructionframe;
+		JFrame frame;
 		JButton[] menu = new JButton[4];
 		JButton[][] board = new JButton[5][9];
-		JPanel contentPane;
+		JPanel contentPane,contentPane2;
 		frame = new JFrame("PvZ");
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
 		GridBagConstraints c = new GridBagConstraints();
 		frame.setLocationRelativeTo(null);
 		contentPane = new JPanel(new GridBagLayout());
+		
+		
+		//instructionframe.setLocationRelativeTo(null);
+		
 		ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie,
 				image2Zombies, imageShovel;
+		
 		imagePeaShooter = new ImageIcon("res//PeaShooter.png");
 		imageBackground = new ImageIcon("res//backround.png");
 		imageWallNut = new ImageIcon("res//WallNut.png");
@@ -38,6 +44,7 @@ public class Main {
 		// c.gridheight=6;
 		// c.gridwidth=10;
 		// contentPane.add( new JLabel(imageBackground),c);
+		
 		c.gridy = 0;
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
@@ -82,6 +89,7 @@ public class Main {
 					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
+						if(y!=board[0].length-1) {
 							switch (choise) {
 							case 0:
 								if (board[x][y].getIcon() == imageTile) 
@@ -106,11 +114,13 @@ public class Main {
 							choise = -1;
 
 						}
+					}
 				});
 			}
 		}
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
+
 		
 	}
 }
