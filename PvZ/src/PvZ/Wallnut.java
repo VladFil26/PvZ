@@ -10,4 +10,11 @@ public class Wallnut {
 		public Wallnut() {
 			wHealth = 400;
 		}
+		
+		/**
+		 * Method for getting wallnut health
+		 */
+		public int getHealth() {
+			return wHealth;
+		}
 }
