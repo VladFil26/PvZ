@@ -4,11 +4,11 @@
 package PvZ;
 
 public class PotatoMine {
-	private int pmHealth;
-	private int damage;
+	static int health;
+	static int damage;
 	
 	public PotatoMine() {
-		pmHealth = 200;
+		health = 200;
 		damage = 200;
 
 	}
@@ -17,14 +17,22 @@ public class PotatoMine {
 	 * Method to get potatomine's health
 	 */
 	public int getHealth() {
-		return pmHealth;
+		return health;
 	}
 	
 	/**
-	 * Method to explode. (aka. give damage to zombie, and take damage itself
+	 * Method to explode. (aka. give damage to zombie, and take damage itself)
 	 */
 	public int explode() {
-		pmHealth = 0;
+		health = 0;
 		return damage;
+	}
+	
+	/**
+	 * Method for resetting health
+	 */
+	public int resetpmHealth() {
+		health = 200;
+		return health;
 	}
 }

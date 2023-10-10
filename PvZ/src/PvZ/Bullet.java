@@ -5,12 +5,12 @@
 package PvZ;
 
 public class Bullet {
-	private int bHealth;
-	private int damage;
-	private int speed;
+	static int health;
+	static int damage;
+	static int speed;
 		
 		public Bullet() {
-			bHealth = 200;
+			health = 200;
 			damage = 100;
 			speed = 1; //1 square every second
 		}
@@ -19,7 +19,7 @@ public class Bullet {
 		 * Method for getting health
 		 */
 		public int getHealth() {
-			return bHealth;
+			return health;
 		}
 		
 		/**
@@ -34,5 +34,13 @@ public class Bullet {
 		 */
 		public int getSpeed() {
 			return speed;
+		}
+		
+		/**
+		 * Method for resetting health
+		 */
+		public int resetbHealth() {
+			health = 200;
+			return health;
 		}
 }

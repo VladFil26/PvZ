@@ -3,9 +3,12 @@ package PvZ;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.Timer;
 
 public class Main {
 	static int choise;
+	static Timer timer;
+	static int num;
 
 	public static void main(String[] args) {
 		StartWindow sw=new StartWindow();
@@ -29,21 +32,17 @@ public class Main {
 		potatoArray = new int[5][9];
 
 		//For Timer
-		Timer timer;
-		JLabel timerLabel;
 		int speed = 500;
-		int num = 0;
+		num = 0;
 		
 		
 		//Timer
-		timerLabel = new JLabel("Timer");
-		timerLabel.setVisible(false);
+		
 		timer = new Timer(speed, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				timerLabel.setText(String.valueOf(num));
-			//	num = num + 1;
+				num = num + 1;
 				
 				//Arrays
 				int[][] zombieArray;
@@ -64,12 +63,5 @@ public class Main {
 
 
 	
-	}
-	
-	/**
-	 * Method to reset simulation
-	 */
-	public int reset() {
-		
 	}
 }

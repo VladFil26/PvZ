@@ -120,14 +120,4 @@ public class UI {
 	}
 
 	
-	/**
-	 * Method to reset tile images
-	 */
-	public void resetImages(){
-		for(int i = 0; i < board.length; i++) {
-			for(int j = 0; j < board.length; j++) {
-				
-			}
-		}
-	}
 }
