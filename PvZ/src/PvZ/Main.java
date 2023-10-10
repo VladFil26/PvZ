@@ -10,6 +10,10 @@ public class Main {
 	public static void main(String[] args) {
 		StartWindow sw=new StartWindow();
 		UI ui=new UI();
+		Peashooter peashooter = new Peashooter();
+		Bullet bullet = new Bullet();
+		Wallnut wallnut = new Wallnut();
+		PotatoMine potatoMine = new PotatoMine();
 
 		// Arrays
 		int[][] zombieArray;
