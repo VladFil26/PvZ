@@ -111,11 +111,8 @@ public class UI {
 			}
 		}
 		frame.setContentPane(contentPane);
-	//	frame.setVisible(true);
+	//frame.setVisible(true);
 	}
-	
-<<<<<<< HEAD
-=======
 	/**
 	 * Method to reset tile images
 	 */
@@ -126,6 +123,4 @@ public class UI {
 			}
 		}
 	}
-
->>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 }
