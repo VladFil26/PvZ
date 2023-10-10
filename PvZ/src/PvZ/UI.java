@@ -92,6 +92,7 @@ public class UI {
 							case 0:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
+									
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
