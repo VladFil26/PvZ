@@ -24,6 +24,12 @@ public class UI {
 
 	public UI() {
 
+		Peashooter peashooter = new Peashooter();
+		Bullet bullet = new Bullet();
+		Wallnut wallnut = new Wallnut();
+		PotatoMine potatoMine = new PotatoMine();
+
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
 		frame.setLocationRelativeTo(null);
@@ -80,6 +86,7 @@ public class UI {
 							case 0:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
+									
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
@@ -106,5 +113,16 @@ public class UI {
 		frame.setContentPane(contentPane);
 	//	frame.setVisible(true);
 	}
-//public void 
+	
+	/**
+	 * Method to reset tile images
+	 */
+	public void resetImages(){
+		for(int i = 0; i < board.length; i++) {
+			for(int j = 0; j < board.length; j++) {
+				
+			}
+		}
+	}
+
 }
