@@ -6,7 +6,8 @@ import java.awt.event.*;
 
 public class UI {
 	int choise;
-	JFrame frame = new JFrame("PvZ");
+	int limit;
+	public JFrame frame = new JFrame("PvZ");
 	JPanel contentPane = new JPanel(new GridBagLayout());
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
@@ -19,10 +20,7 @@ public class UI {
 			{ "03", "13", "23", "33", "43", "53", "63", "73", "83" },
 			{ "04", "14", "24", "34", "44", "54", "64", "74", "84" }, };
 	String[] b = { "0", "1", "2", "3" };
-	// setLayout(new BorderLayout);
-	// c.gridheight=6;
-	// c.gridwidth=10;
-	// contentPane.add( new JLabel(imageBackground),c);
+
 
 	public UI() {
 
@@ -43,8 +41,6 @@ public class UI {
 			menu[i] = new JButton();
 			menu[i].setPreferredSize(new Dimension(90, 90));
 			contentPane.add(menu[i], c);
-			// c.gridheight=1;
-			// c.gridwidth=1;
 
 		}
 		menu[0].setIcon(imagePeaShooter);
@@ -55,8 +51,6 @@ public class UI {
 		for (int i = 0; i < board.length; i++) {// create board
 			c.gridy = i + 1;
 			for (int j = 0; j < board[0].length; j++) {
-				// c.gridheight=1;
-				// c.gridwidth=1;
 				board[i][j] = new JButton();
 				board[i][j].setPreferredSize(new Dimension(90, 90));
 				c.gridx = j;
@@ -110,7 +104,7 @@ public class UI {
 			}
 		}
 		frame.setContentPane(contentPane);
-		frame.setVisible(true);
+	//	frame.setVisible(true);
 	}
-
+//public void 
 }
