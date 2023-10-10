@@ -11,6 +11,7 @@ public class Main {
 
 		StartWindow sw=new StartWindow();
 		UI ui=new UI();
+		sw.buttonPress(ui);
 		Peashooter peashooter = new Peashooter();
 		Bullet bullet = new Bullet();
 		Wallnut wallnut = new Wallnut();
