@@ -125,7 +125,7 @@ public class UI {
 		
 		//For Timer
 				int speed = 500;
-				num = 0;
+				num = 0; 
 
 				// Timer
 				timer = new Timer(speed, new ActionListener() {
