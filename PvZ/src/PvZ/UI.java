@@ -10,7 +10,7 @@ public class UI {
 	static int limit;
 	static Timer timer;
 	static int num;
-	public JFrame frame = new JFrame("PvZ");
+	public JFrame frame = new JFrame("PvZ Simulation");
 	JPanel contentPane = new JPanel(new GridBagLayout());
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
@@ -23,14 +23,13 @@ public class UI {
 			{ "03", "13", "23", "33", "43", "53", "63", "73", "83" },
 			{ "04", "14", "24", "34", "44", "54", "64", "74", "84" }, };
 	String[] b = { "0", "1", "2", "3" };
-
+	
+	Peashooter peashooter = new Peashooter();
+	Bullet bullet = new Bullet();
+	Wallnut wallnut = new Wallnut();
+	PotatoMine potatoMine = new PotatoMine();
 
 	public UI() {
-
-		Peashooter peashooter = new Peashooter();
-		Bullet bullet = new Bullet();
-		Wallnut wallnut = new Wallnut();
-		PotatoMine potatoMine = new PotatoMine();
 
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,7 +112,6 @@ public class UI {
 				});
 			}
 		}
-		
 		
 		
 		//For Timer
@@ -199,8 +197,14 @@ public class UI {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board.length; j++) {
 				
+				board[i][j].setIcon(imageTile);
 			}
 		}
+		peashooter.resetpsHealth();
+		bullet.resetbHealth();
+		wallnut.resetwHealth();
+		potatoMine.resetpmHealth();
+		//zombie reset health
 	}
 	
 }

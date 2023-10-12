@@ -28,6 +28,13 @@ public class Peashooter {
 		return health;
 	}
 	
+	/**
+	 * Method to get rate of fire
+	 * @return
+	 */
+	public int getRateOfFire() {
+		return rateOfFire;
+	}
 	
 	/**
 	 * method for shooting bullet
