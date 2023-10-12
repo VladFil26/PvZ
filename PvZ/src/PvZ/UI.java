@@ -23,11 +23,18 @@ public class UI {
 			{ "03", "13", "23", "33", "43", "53", "63", "73", "83" },
 			{ "04", "14", "24", "34", "44", "54", "64", "74", "84" }, };
 	String[] b = { "0", "1", "2", "3" };
-	
+
 	Peashooter peashooter = new Peashooter();
 	Bullet bullet = new Bullet();
 	Wallnut wallnut = new Wallnut();
 	PotatoMine potatoMine = new PotatoMine();
+
+	int[][] peashooterArray = new int[5][9];
+	int[][] wallnutArray = new int[5][9];
+	int[][] potatoMineArray = new int[5][9];
+	int[][] peaArray = new int[5][9];
+	int[][] zombieArray = new int[5][9];
+
 
 	public UI() {
 
@@ -88,15 +95,17 @@ public class UI {
 							case 0:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
-									
+									peashooterArray[x][y] = peashooter.getHealth();
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imageWallNut);
+									wallnutArray[x][y] = wallnut.getHealth();
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePotatoMine);
+									potatoMineArray[x][y] = potatoMine.getHealth();
 								break;
 							case 3:
 								if (board[x][y].getIcon() != imageTile)
@@ -116,7 +125,7 @@ public class UI {
 		
 		//For Timer
 				int speed = 500;
-				num = 0;
+				num = 0; 
 
 				// Timer
 				timer = new Timer(speed, new ActionListener() {
@@ -125,68 +134,16 @@ public class UI {
 					public void actionPerformed(ActionEvent e) {
 						num = num + 1;
 
-						// Arrays
-						int[][] zombieArray;
-						int[][] peaArray;
-						int[][] peashooterArray;
-						int[][] wallnutArray;
-						int[][] potatoArray;
-
-						zombieArray = new int[5][9];
-						peaArray = new int[5][9];
-						peashooterArray = new int[5][9];
-						wallnutArray = new int[5][9];
-						potatoArray = new int[5][9];
+						
 
 						// All the interactions will go here
-
+						
 					}
 				});
 		
 		
 		frame.setContentPane(contentPane);
 	//frame.setVisible(true);
-	}
-	
-	
-	
-	public int[][] arrayPeashooter()
-	{
-		Peashooter peashooter = new Peashooter();
-		int[][] peashooterArray;
-		peashooterArray = new int[5][9];
-		return peashooterArray;
-	}
-	
-	public int[][] arrayWallnut()
-	{
-		Wallnut wallnut = new Wallnut();
-		int[][] wallnutArray;
-		wallnutArray = new int[5][9];
-		return wallnutArray;
-	}
-	
-	public int[][] arrayPotato()
-	{
-		PotatoMine potatoMine = new PotatoMine();
-		int[][] potatoArray;
-		potatoArray = new int[5][9];
-		return potatoArray;
-	}
-	
-	public int[][] arrayPea()
-	{
-		Bullet bullet = new Bullet();
-		int[][] peaArray;
-		peaArray = new int[5][9];
-		return peaArray;
-	}
-	
-	public int[][] arrayZombie()
-	{
-		int[][] zombieArray;
-		zombieArray = new int[5][9];
-		return zombieArray;
 	}
 	
 	
