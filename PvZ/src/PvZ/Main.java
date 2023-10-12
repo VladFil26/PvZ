@@ -25,6 +25,7 @@ public class Main {
 		int num = 0;
 
 		// Timer
+		
 		timerLabel = new JLabel("Timer");
 		timerLabel.setVisible(false);
 		timer = new Timer(speed, new ActionListener() {
