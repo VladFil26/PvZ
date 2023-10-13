@@ -27,7 +27,7 @@ public class UI {
 	Peashooter[] peashooterArray = new Peashooter[0]; // better to use class of plant instead of 2d arrays
 //	Bullet[] bullet = new Bullet();
 	Wallnut[] wallnutArray = new Wallnut[0];
-	PotatoMine[] potatoMine = new PotatoMine[0];
+	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
 
 	// int[][] peashooterArray = new int[5][9];
@@ -95,23 +95,43 @@ public class UI {
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
-								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; //temporary array with 1 more space for plants
+								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
+																								// 1 more space for
+																								// plants
 								for (int i = 0; i < peashooterArray.length; i++) {
 									temp[i] = peashooterArray[i];
 								}
 								temp[peashooterArray.length] = ps;
-								peashooterArray=temp;
+								peashooterArray = temp;
+								// System.out.print(peashooterArray.length);
 								// = peashooter.getHealth();
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imageWallNut);
-								//wallnutArray[x][y] = wallnut.getHealth();
+								Wallnut wn = new Wallnut(x, y);
+								Wallnut[] temp2 = new Wallnut[wallnutArray.length + 1]; // temporary array with 1 more
+																						// space for plants
+								for (int i = 0; i < wallnutArray.length; i++) {
+									temp2[i] = wallnutArray[i];
+								}
+								temp2[wallnutArray.length] = wn;
+								wallnutArray = temp2;
+								// wallnutArray[x][y] = wallnut.getHealth();
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePotatoMine);
-							//	potatoMineArray[x][y] = potatoMine.getHealth();
+								PotatoMine pm = new PotatoMine(x, y);
+								PotatoMine[] temp3 = new PotatoMine[potatoMineArray.length + 1]; // temporary array with
+																									// 1 more space for
+																									// plants
+								for (int i = 0; i < wallnutArray.length; i++) {
+									temp3[i] = potatoMineArray[i];
+								}
+								temp3[potatoMineArray.length] = pm;
+								potatoMineArray = temp3;
+								// potatoMineArray[x][y] = potatoMine.getHealth();
 								break;
 							case 3:
 								if (board[x][y].getIcon() != imageTile)

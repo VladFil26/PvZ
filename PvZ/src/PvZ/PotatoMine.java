@@ -8,10 +8,11 @@ public class PotatoMine {
 	static int damage;
 	int x, y;
 
-	public PotatoMine() {
+	public PotatoMine(int x, int y) {
 		health = 200;
 		damage = 200;
-
+		this.x = x;
+		this.y = y;
 	}
 
 	/**

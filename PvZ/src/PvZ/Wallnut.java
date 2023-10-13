@@ -8,8 +8,10 @@ public class Wallnut {
 	static int health;
 	int x, y;
 
-	public Wallnut() {
+	public Wallnut(int x, int y) {
 		health = 400;
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
