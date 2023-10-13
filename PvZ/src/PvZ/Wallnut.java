@@ -5,24 +5,33 @@
 package PvZ;
 
 public class Wallnut {
-		static int health;
-		
-		public Wallnut() {
-			health = 400;
-		}
-		
-		/**
-		 * Method for getting wallnut health
-		 */
-		public int getHealth() {
-			return health;
-		}
-		
-		/**
-		 * Method for resetting health
-		 */
-		public int resetwHealth() {
-			health = 400;
-			return health;
-		}
+	static int health;
+	int x, y;
+
+	public Wallnut() {
+		health = 400;
+	}
+
+	/**
+	 * Method for getting wallnut health
+	 */
+	public int getHealth() {
+		return health;
+	}
+
+	/**
+	 * Method for resetting health
+	 */
+	public int resetwHealth() {
+		health = 400;
+		return health;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

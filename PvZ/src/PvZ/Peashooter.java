@@ -6,20 +6,23 @@ package PvZ;
 
 public class Peashooter {
 	static int health;
-	static int  rateOfFire;
-	
-	public Peashooter() {
+	static int rateOfFire;
+	int x, y;
+
+	public Peashooter(int x, int y) {
 		health = 200;
-		rateOfFire = 2; //every two seconds
+		rateOfFire = 2; // every two seconds
+		this.x=x;
+		this.y=y;
 	}
-	
+
 	/**
 	 * method for getting health
 	 */
 	public int getHealth() {
 		return health;
 	}
-	
+
 	/**
 	 * Method for resetting health
 	 */
@@ -27,19 +30,24 @@ public class Peashooter {
 		health = 200;
 		return health;
 	}
-	
+
 	/**
 	 * Method to get rate of fire
+	 * 
 	 * @return
 	 */
 	public int getRateOfFire() {
 		return rateOfFire;
 	}
-	
+
 	/**
 	 * method for shooting bullet
 	 */
-	//public int shootBullet() {
-	//	
-	//}
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

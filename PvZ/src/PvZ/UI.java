@@ -24,21 +24,20 @@ public class UI {
 			{ "04", "14", "24", "34", "44", "54", "64", "74", "84" }, };
 	String[] b = { "0", "1", "2", "3" };
 
-	Peashooter peashooter = new Peashooter();
-	Bullet bullet = new Bullet();
-	Wallnut wallnut = new Wallnut();
-	PotatoMine potatoMine = new PotatoMine();
+	Peashooter[] peashooterArray = new Peashooter[0]; // better to use class of plant instead of 2d arrays
+//	Bullet[] bullet = new Bullet();
+	Wallnut[] wallnutArray = new Wallnut[0];
+	PotatoMine[] potatoMine = new PotatoMine[0];
+	Zombie[] zombieArray = new Zombie[0];
 
-	int[][] peashooterArray = new int[5][9];
-	int[][] wallnutArray = new int[5][9];
-	int[][] potatoMineArray = new int[5][9];
-	int[][] peaArray = new int[5][9];
-	int[][] zombieArray = new int[5][9];
-
+	// int[][] peashooterArray = new int[5][9];
+	// int[][] wallnutArray = new int[5][9];
+	// int[][] potatoMineArray = new int[5][9];
+	// int[][] peaArray = new int[5][9];
+	// int[][] zombieArray = new int[5][9];
 
 	public UI() {
 
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
 		frame.setLocationRelativeTo(null);
@@ -95,17 +94,24 @@ public class UI {
 							case 0:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
-									peashooterArray[x][y] = peashooter.getHealth();
+								Peashooter ps = new Peashooter(x, y);
+								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; //temporary array with 1 more space for plants
+								for (int i = 0; i < peashooterArray.length; i++) {
+									temp[i] = peashooterArray[i];
+								}
+								temp[peashooterArray.length] = ps;
+								peashooterArray=temp;
+								// = peashooter.getHealth();
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imageWallNut);
-									wallnutArray[x][y] = wallnut.getHealth();
+								//wallnutArray[x][y] = wallnut.getHealth();
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePotatoMine);
-									potatoMineArray[x][y] = potatoMine.getHealth();
+							//	potatoMineArray[x][y] = potatoMine.getHealth();
 								break;
 							case 3:
 								if (board[x][y].getIcon() != imageTile)
@@ -121,47 +127,42 @@ public class UI {
 				});
 			}
 		}
-		
-		
-		//For Timer
-				int speed = 500;
-				num = 0; 
 
-				// Timer
-				timer = new Timer(speed, new ActionListener() {
+		// For Timer
+		int speed = 500;
+		num = 0;
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						num = num + 1;
+		// Timer
+		timer = new Timer(speed, new ActionListener() {
 
-						
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				num = num + 1;
 
-						// All the interactions will go here
-						
-					}
-				});
-		
-		
+				// All the interactions will go here
+
+			}
+		});
+
 		frame.setContentPane(contentPane);
-	//frame.setVisible(true);
+		// frame.setVisible(true);
 	}
-	
-	
+
 	/**
 	 * Method to reset simulation
 	 */
-	public void reset(){
-		for(int i = 0; i < board.length; i++) {
-			for(int j = 0; j < board.length; j++) {
-				
+	public void reset() {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+
 				board[i][j].setIcon(imageTile);
 			}
 		}
-		peashooter.resetpsHealth();
-		bullet.resetbHealth();
-		wallnut.resetwHealth();
-		potatoMine.resetpmHealth();
-		//zombie reset health
+		// peashooter.resetpsHealth();
+		// bullet.resetbHealth();
+		// wallnut.resetwHealth();
+		// potatoMine.resetpmHealth();
+		// zombie reset health
 	}
-	
+
 }
