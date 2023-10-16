@@ -167,7 +167,6 @@ public class UI {
 				temp[zombieArray.length] = zomb;
 				zombieArray = temp;
 System.out.println("+1");
-				// All the interactions will go here
 
 			}
 		});
