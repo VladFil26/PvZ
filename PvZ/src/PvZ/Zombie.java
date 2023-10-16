@@ -19,13 +19,13 @@ public class Zombie {
 	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts, Timer timer) {
 		for (int i = 0; i < peashooters.length; i++) {
 			if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
-				//timer
+				// timer
 				peashooters[i].health -= 20;
 			} else if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
-				//timer
+				// timer
 				potatomines[i].health -= 20;
 			} else if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
-				//timer
+				// timer
 				wallnuts[i].health -= 20;
 			} else {
 				// add timer
@@ -42,11 +42,12 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-public Zombie() {
-	Random r=new Random();
- 	x=r.nextInt(0,4);
- 	y=0;
- 	
-}
- 
+
+	public Zombie() {
+		Random r = new Random();
+		x = r.nextInt(0, 4);
+		y = 0;
+
+	}
+
 }
