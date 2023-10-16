@@ -14,7 +14,8 @@ public class Main {
 		
 		StartWindow sw=new StartWindow();
 		sw.buttonPress(ui);
-		
+		ui.timer.start();
+
 		
 	}
 }

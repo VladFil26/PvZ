@@ -28,7 +28,6 @@ public class Zombie {
 				// timer
 				wallnuts[i].health -= 20;
 			} else {
-				// add timer
 				x++;
 			}
 

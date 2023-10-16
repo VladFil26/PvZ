@@ -30,14 +30,7 @@ public class UI {
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
 
-	// int[][] peashooterArray = new int[5][9];
-	// int[][] wallnutArray = new int[5][9];
-	// int[][] potatoMineArray = new int[5][9];
-	// int[][] peaArray = new int[5][9];
-	// int[][] zombieArray = new int[5][9];
-
 	public UI() {
-
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
 		frame.setLocationRelativeTo(null);
