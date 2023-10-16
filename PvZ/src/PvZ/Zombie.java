@@ -25,11 +25,11 @@ public class Zombie {
 		speed = 500;
 		num = 0;
 		timer = new Timer(speed, new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				num = num+1;
-				
+				System.out.println("hi");
 				for (int i = 0; i < peashooters.length; i++) {
 					
 					if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
@@ -54,6 +54,15 @@ public class Zombie {
 
 	}
 
+	
+	/**
+	 * Method to start timer
+	 * @return
+	 */
+	public void timerStart() {
+		timer.start();
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -61,9 +70,13 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-	/*
-	 * public int[][] zombieSpawn(int zombies[][], int random) { for (int i = 0; i <
-	 * 1;) { random = r.nextInt(8); if (zombies[random][9] == 0) {
-	 * zombies[random][9] = 200; i = 1; } } return zombies; }
-	 */
+
+	//Constructor
+	public Zombie() {
+		Random r = new Random();
+		x = r.nextInt(0, 4);
+		y = 0;
+
+	}
+
 }
