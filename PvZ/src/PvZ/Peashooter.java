@@ -40,9 +40,6 @@ public class Peashooter {
 		return rateOfFire;
 	}
 
-	/**
-	 * method for shooting bullet
-	 */
 	public int getX() {
 		return x;
 	}
