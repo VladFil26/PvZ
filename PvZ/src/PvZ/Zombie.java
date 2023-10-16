@@ -49,9 +49,9 @@ public class Zombie {
 						x++;
 					}
 				}
-			});
+			}
+		});
 
-		}
 	}
 
 	public int getX() {
