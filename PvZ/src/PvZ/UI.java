@@ -126,7 +126,7 @@ public class UI {
 								PotatoMine[] temp3 = new PotatoMine[potatoMineArray.length + 1]; // temporary array with
 																									// 1 more space for
 																									// plants
-								for (int i = 0; i < wallnutArray.length; i++) {
+								for (int i = 0; i < potatoMineArray.length; i++) {
 									temp3[i] = potatoMineArray[i];
 								}
 								temp3[potatoMineArray.length] = pm;
@@ -134,8 +134,16 @@ public class UI {
 								// potatoMineArray[x][y] = potatoMine.getHealth();
 								break;
 							case 3:
-								if (board[x][y].getIcon() != imageTile)
+								if (board[x][y].getIcon() != imageTile) {
 									board[x][y].setIcon(imageTile);
+								/*	for (int i = 0; i < potatoMineArray.length; i++) {
+										if (potatoMineArray[i].getX() == x && potatoMineArray[i].getY() == y) {
+											for (int j = i; j < potatoMineArray.length; j++) {
+												
+											}
+										}
+									}*/
+								}
 								break;
 							default:
 								choise = -1;
@@ -158,7 +166,14 @@ public class UI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				num = num + 1;
-
+				Zombie zomb = new Zombie();
+				Zombie[] temp = new Zombie[zombieArray.length + 1]; 
+				for (int i = 0; i < zombieArray.length; i++) {
+					temp[i] = zombieArray[i];
+				}
+				temp[zombieArray.length] = zomb;
+				zombieArray = temp;
+System.out.println("+1");
 				// All the interactions will go here
 
 			}
@@ -184,5 +199,15 @@ public class UI {
 		// potatoMine.resetpmHealth();
 		// zombie reset health
 	}
-
+public void update() {
+	for (int k = 0; k < zombieArray.length; k++) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if(zombieArray[k].getX()==i&&zombieArray[k].getY()==j)
+					if(board[i][j].getIcon()==imageTile)
+				board[i][j].setIcon(imageZombie);
+			}
+		}
+}
+}
 }

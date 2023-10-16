@@ -42,9 +42,11 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-	/*
-	 * public int[][] zombieSpawn(int zombies[][], int random) { for (int i = 0; i <
-	 * 1;) { random = r.nextInt(8); if (zombies[random][9] == 0) {
-	 * zombies[random][9] = 200; i = 1; } } return zombies; }
-	 */
+public Zombie() {
+	Random r=new Random();
+ 	x=r.nextInt(0,4);
+ 	y=0;
+ 	
+}
+ 
 }
