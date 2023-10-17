@@ -89,6 +89,7 @@ public class UI {
 						if (y != board[0].length - 1) {
 							switch (choise) {
 							case 0:
+								//System.out.println(peashooterArray.length);
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
@@ -100,6 +101,7 @@ public class UI {
 								}
 								temp[peashooterArray.length] = ps;
 								peashooterArray = temp;
+								System.out.println(peashooterArray.length);
 								// System.out.print(peashooterArray.length);
 								// = peashooter.getHealth();
 								break;
@@ -184,7 +186,7 @@ public class UI {
 								"Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
-			//	System.out.println("+1");
+				// System.out.println("+1");
 
 			}
 		});
@@ -227,5 +229,15 @@ public class UI {
 
 			}
 		}
+	}
+	public Object[] removePlant(Object[] plantarray,int num) {
+		Object[] temp=new Object[plantarray.length-1];
+		for(int i=0;i<num;i++) {
+			temp[i]=plantarray[i];
+		}
+		for(int i=num;i<=temp.length;i++) {
+			temp[i]=plantarray[i+1];
+		}
+		return temp;
 	}
 }

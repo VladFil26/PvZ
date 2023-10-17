@@ -25,23 +25,30 @@ public class Zombie {
 		for (int i = 0; i < peashooters.length; i++) {
 			if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
 				peashooters[i].setHealth(-100);
+				peashooters=(Peashooter[])removePlant(peashooters,i);
+				
 				t = true;
+				System.out.println("Eating peashooter");
 			}
 		}
 		if (t) {
-			for (int i = 0; i < peashooters.length; i++) {
+			for (int i = 0; i < potatomines.length; i++) {
 				if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
 					potatomines[i].setHealth(-100);
+					potatomines=(PotatoMine[])removePlant(potatomines,i);
 					t = true;
+					System.out.println("Eating potatomines");
+
 				}
 
 			}
 		}
 		if (t) {
-			for (int i = 0; i < peashooters.length; i++) {
+			for (int i = 0; i < wallnuts.length; i++) {
 				if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
 					wallnuts[i].setHealth(-100);
 					t = true;
+					System.out.println("Eating wallnuts");
 				}
 			}
 		}
@@ -63,7 +70,16 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-
+public Object[] removePlant(Object[] plantarray,int num) {
+	Object[] temp=new Object[plantarray.length-1];
+	for(int i=0;i<num;i++) {
+		temp[i]=plantarray[i];
+	}
+	for(int i=num;i<=temp.length;i++) {
+		temp[i]=plantarray[i+1];
+	}
+	return temp;
+}
 	// Constructor
 	public Zombie() {
 		Random r = new Random();
