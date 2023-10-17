@@ -15,6 +15,7 @@ public class UI {
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
+	public JButton start = new JButton();
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
 			imageShovel;
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
@@ -43,6 +44,8 @@ public class UI {
 		image2Zombies = new ImageIcon("res//2ZombieR.png");
 		imageShovel = new ImageIcon("res//shovel.png");
 		c.gridy = 0;
+
+		// Making Menu
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
 			menu[i] = new JButton();
@@ -55,7 +58,15 @@ public class UI {
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
 
-		for (int i = 0; i < board.length; i++) {// create board
+		// Start Button
+		start.setText("Start!");
+		start.setFont(new Font("Stencil", Font.BOLD, 14));
+		start.setPreferredSize(new Dimension(90, 90));
+		c.gridx = 4;
+		contentPane.add(start, c);
+
+		// Making Board
+		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j] = new JButton();
@@ -79,6 +90,7 @@ public class UI {
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j].setActionCommand(a[i][j]);
 				board[i][j].addActionListener(new ActionListener() {
+
 					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
@@ -148,7 +160,6 @@ public class UI {
 				});
 			}
 		}
-
 		// For Timer
 		int speed = 500;
 		num = 0;
@@ -173,6 +184,7 @@ public class UI {
 					System.out.println("+1");
 					c++;
 				}
+
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
@@ -180,11 +192,26 @@ public class UI {
 								"Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
-	}
+			//	System.out.println("+1");
+
+			}
 		});
+
+		/*
+		 * //Start Button commands start.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * 
+		 * timer.start();
+		 * 
+		 * }
+		 * 
+		 * });
+		 */
 
 		frame.setContentPane(contentPane);
 		// frame.setVisible(true);
+		// }
 	}
 
 	/**
@@ -204,20 +231,20 @@ public class UI {
 		// zombie reset health
 	}
 
-	public void update() {// to make changes in window(ui part)
+	public void update() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
-				if(board[i][j].getIcon()==imageZombie)
-				board[i][j].setIcon(imageTile);
+				if (board[i][j].getIcon() == imageZombie)
+					board[i][j].setIcon(imageTile);
 				for (int k = 0; k < zombieArray.length; k++) {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
 						// if (board[i][j].getIcon() == imageTile)
 						board[i][j].setIcon(imageZombie);
-					
-						 }
+
 					}
-		
 				}
+
 			}
 		}
+	}
 }
