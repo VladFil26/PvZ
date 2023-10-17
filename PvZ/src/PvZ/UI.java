@@ -15,7 +15,6 @@ public class UI {
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
-	public JButton start = new JButton();
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
 			imageShovel;
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
@@ -57,13 +56,6 @@ public class UI {
 		menu[1].setIcon(imageWallNut);
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
-
-		// Start Button
-		start.setText("Start!");
-		start.setFont(new Font("Stencil", Font.BOLD, 14));
-		start.setPreferredSize(new Dimension(90, 90));
-		c.gridx = 4;
-		contentPane.add(start, c);
 
 		// Making Board
 		for (int i = 0; i < board.length; i++) {
@@ -196,19 +188,8 @@ public class UI {
 
 			}
 		});
-
-		/*
-		 * //Start Button commands start.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * 
-		 * timer.start();
-		 * 
-		 * }
-		 * 
-		 * });
-		 */
-
+		 
+		
 		frame.setContentPane(contentPane);
 		// frame.setVisible(true);
 		// }

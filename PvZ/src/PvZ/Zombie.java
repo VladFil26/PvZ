@@ -70,5 +70,4 @@ public class Zombie {
 		x = r.nextInt(0, 4);
 		y = 9;
 	}
-
 }
