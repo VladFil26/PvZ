@@ -15,6 +15,7 @@ public class UI {
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
+	public JButton start = new JButton();
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
 			imageShovel;
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
@@ -43,6 +44,8 @@ public class UI {
 		image2Zombies = new ImageIcon("res//2ZombieR.png");
 		imageShovel = new ImageIcon("res//shovel.png");
 		c.gridy = 0;
+		
+		//Making Menu
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
 			menu[i] = new JButton();
@@ -55,7 +58,15 @@ public class UI {
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
 
-		for (int i = 0; i < board.length; i++) {// create board
+		//Start Button
+		start.setText("Start!");
+		start.setFont(new Font("Stencil", Font.BOLD, 14));
+		start.setPreferredSize(new Dimension(90, 90));
+		c.gridx = 4;
+		contentPane.add(start, c);
+		
+		//Making Board
+		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j] = new JButton();
@@ -168,12 +179,27 @@ public class UI {
 				zombieArray = temp;
 System.out.println("+1");
 
+
 			}
 		});
 
+		//Start Button commands
+		start.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				timer.start();
+				
+			}	
+		});
+		
+		
 		frame.setContentPane(contentPane);
 		// frame.setVisible(true);
 	}
+	
+	
 
 	/**
 	 * Method to reset simulation
@@ -191,6 +217,7 @@ System.out.println("+1");
 		// potatoMine.resetpmHealth();
 		// zombie reset health
 	}
+	
 public void update() {
 	for (int k = 0; k < zombieArray.length; k++) {
 		for (int i = 0; i < board.length; i++) {
