@@ -4,16 +4,14 @@
 
 package PvZ;
 
-public class Peashooter {
+public class Peashooter extends Plant {
 	static int health;
 	static int rateOfFire;
 	int x, y;
 
 	public Peashooter(int x, int y) {
-		health = 200;
+		super(x, y, 200);
 		rateOfFire = 2; // every two seconds
-		this.x=x;
-		this.y=y;
 	}
 
 	/**
@@ -40,11 +38,4 @@ public class Peashooter {
 		return rateOfFire;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 }

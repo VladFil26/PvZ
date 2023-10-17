@@ -17,53 +17,45 @@ public class Zombie {
 	int healts;
 	int damage;
 	int x, y;
-	private Timer timer;
-	private int speed, num;
+	// private Timer timer;
+	// private int speed, num;
 
+	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
+		boolean t = false;
+		for (int i = 0; i < peashooters.length; i++) {
+			if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
+				peashooters[i].setHealth(-100);
+				t = true;
+			}
+		}
+		if (t) {
+			for (int i = 0; i < peashooters.length; i++) {
+				if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
+					potatomines[i].setHealth(-100);
+					t = true;
+				}
 
-	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts, Timer timer) {
-		
-		speed = 500;
-		num = 0;
-		timer = new Timer(speed, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				num = num+1;
-				System.out.println("hi");
-				for (int i = 0; i < peashooters.length; i++) {
-					
-					if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
-						
-						peashooters[i].health -= 100;
-						
-					} else if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
-						
-						potatomines[i].health -= 100;
-						
-					} else if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
-						
-						wallnuts[i].health -= 100;
-						
-					} else {
-						
-						x++;
-					}
+			}
+		}
+		if (t) {
+			for (int i = 0; i < peashooters.length; i++) {
+				if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
+					wallnuts[i].setHealth(-100);
+					t = true;
 				}
 			}
-		});
-
+		}
+		if (!t && y >= 1) {
+			// System.out.println("move");
+			y--;
+		}
 	}
 
-	
 	/**
 	 * Method to start timer
+	 * 
 	 * @return
 	 */
-	public void timerStart() {
-		timer.start();
-	}
-	
 	public int getX() {
 		return x;
 	}
@@ -72,12 +64,11 @@ public class Zombie {
 		return y;
 	}
 
-	//Constructor
+	// Constructor
 	public Zombie() {
 		Random r = new Random();
 		x = r.nextInt(0, 4);
-		y = 0;
-
+		y = 9;
 	}
 
 }

@@ -4,14 +4,12 @@
 
 package PvZ;
 
-public class Wallnut {
+public class Wallnut extends Plant {
 	static int health;
 	int x, y;
 
 	public Wallnut(int x, int y) {
-		health = 400;
-		this.x = x;
-		this.y = y;
+		super(x, y, 400);
 	}
 
 	/**
@@ -29,11 +27,11 @@ public class Wallnut {
 		return health;
 	}
 
-	public int getX() {
-		return x;
-	}
+	// public int getX() {
+	// return x;
+//	}
 
-	public int getY() {
-		return y;
-	}
+//	public int getY() {
+	// return y;
+	// }
 }

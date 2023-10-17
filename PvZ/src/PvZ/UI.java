@@ -129,13 +129,13 @@ public class UI {
 							case 3:
 								if (board[x][y].getIcon() != imageTile) {
 									board[x][y].setIcon(imageTile);
-								/*	for (int i = 0; i < potatoMineArray.length; i++) {
-										if (potatoMineArray[i].getX() == x && potatoMineArray[i].getY() == y) {
-											for (int j = i; j < potatoMineArray.length; j++) {
-												
-											}
-										}
-									}*/
+									/*
+									 * for (int i = 0; i < potatoMineArray.length; i++) { if
+									 * (potatoMineArray[i].getX() == x && potatoMineArray[i].getY() == y) { for (int
+									 * j = i; j < potatoMineArray.length; j++) {
+									 * 
+									 * } } }
+									 */
 								}
 								break;
 							default:
@@ -156,19 +156,31 @@ public class UI {
 		// Timer
 		timer = new Timer(speed, new ActionListener() {
 
+			int c = 0;// zombies count
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				num = num + 1;
-				Zombie zomb = new Zombie();
-				Zombie[] temp = new Zombie[zombieArray.length + 1]; 
-				for (int i = 0; i < zombieArray.length; i++) {
-					temp[i] = zombieArray[i];
+				update();
+				if (num % 20 == 0 && c < limit) {
+					Zombie zomb = new Zombie();
+					Zombie[] temp = new Zombie[zombieArray.length + 1];
+					for (int i = 0; i < zombieArray.length; i++) {
+						temp[i] = zombieArray[i];
+					}
+					temp[zombieArray.length] = zomb;
+					zombieArray = temp;
+					System.out.println("+1");
+					c++;
 				}
-				temp[zombieArray.length] = zomb;
-				zombieArray = temp;
-System.out.println("+1");
-
-			}
+				if (num % 10 == 0) {
+					for (int i = 0; i < zombieArray.length; i++) {
+						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
+						System.out.println(
+								"Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
+					}
+				}
+	}
 		});
 
 		frame.setContentPane(contentPane);
@@ -191,15 +203,21 @@ System.out.println("+1");
 		// potatoMine.resetpmHealth();
 		// zombie reset health
 	}
-public void update() {
-	for (int k = 0; k < zombieArray.length; k++) {
+
+	public void update() {// to make changes in window(ui part)
 		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board.length; j++) {
-				if(zombieArray[k].getX()==i&&zombieArray[k].getY()==j)
-					if(board[i][j].getIcon()==imageTile)
-				board[i][j].setIcon(imageZombie);
+			for (int j = 0; j < board[0].length; j++) {
+				if(board[i][j].getIcon()==imageZombie)
+				board[i][j].setIcon(imageTile);
+				for (int k = 0; k < zombieArray.length; k++) {
+					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
+						// if (board[i][j].getIcon() == imageTile)
+						board[i][j].setIcon(imageZombie);
+					
+						 }
+					}
+		
+				}
 			}
 		}
-}
-}
 }

@@ -3,16 +3,14 @@
 
 package PvZ;
 
-public class PotatoMine {
+public class PotatoMine extends Plant {
 	static int health;
 	static int damage;
 	int x, y;
 
 	public PotatoMine(int x, int y) {
-		health = 200;
+		super(x, y, 200);
 		damage = 200;
-		this.x = x;
-		this.y = y;
 	}
 
 	/**
@@ -38,11 +36,4 @@ public class PotatoMine {
 		return health;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 }
