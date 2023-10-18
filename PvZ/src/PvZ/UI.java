@@ -28,8 +28,8 @@ public class UI {
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
-	Bullet[] bulletArray = new Bullet[0];
-
+	int[][] bulletArray = new int[5][9];
+	       
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 700);
@@ -67,6 +67,8 @@ public class UI {
 				c.gridx = j;
 				board[i][j].setIcon(imageTile);
 				contentPane.add(board[i][j], c);
+				
+				bulletArray[i][j] = 0;
 			}
 		}
 		for (int i = 0; i < menu.length; i++) {
@@ -96,9 +98,10 @@ public class UI {
 								Peashooter ps = new Peashooter(x, y);
 								
 								//Making bullets shoot
-								Bullet bullet = new Bullet(x+1, y);
+								Bullet bullet = new Bullet(x, y+1);
 								if(board[x][y+1].getIcon() == imageTile || board[x][y+1].getIcon() == imageZombie) {
 									board[x][y+1].setIcon(imagePea);
+									bulletArray[x][y+1] = 1;
 								}
 									
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
@@ -194,10 +197,44 @@ public class UI {
 								"Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
-				// System.out.println("+1");
+				// System.out.println("+1")
+				
+				
+				//MAKING BULLET MOVE
+				if(num % 10 == 0) {
+					
+					for (int i = 4; i >= 0; i--) {
+						for (int j = 8; j >= 0; j--) {
+							
+							System.out.println(i + " " + j);
+							
+							//Changing bulletArray values (0 = no bullet, 1 = bullet)
+							bulletArray[i][j] = 0;
+							
+							//So bullet doesnt go out of bounds of array
+							if(j < 7) {
+								bulletArray[i][j+1] = 1;
+							}else {
+								bulletArray[i][j] = bulletArray[i][j];
+							}
+							
+							//Changing images on board 
+							if (bulletArray[i][j] == 0) {
+								board[i][j].setIcon(imageTile);
+								
+							}else if(bulletArray[i][j] == 1){
+								board[i][j].setIcon(imagePea);
+							}
 
+							
+						}
+					}
+				}
+				
 			}
 		});
+		
+		timer.start(); 
 		
 		
 		
