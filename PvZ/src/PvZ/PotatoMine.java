@@ -13,6 +13,7 @@ public class PotatoMine extends Plant {
 		damage = 200;
 	}
 
+	
 	/**
 	 * Method to get potatomine's health
 	 */

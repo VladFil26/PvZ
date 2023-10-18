@@ -16,7 +16,7 @@ public class UI {
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
-			imageShovel;
+			imageShovel, imagePea;
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
 			{ "02", "12", "22", "32", "42", "52", "62", "72", "85" },
@@ -25,10 +25,10 @@ public class UI {
 	String[] b = { "0", "1", "2", "3" };
 
 	Peashooter[] peashooterArray = new Peashooter[0]; // better to use class of plant instead of 2d arrays
-//	Bullet[] bullet = new Bullet();
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
+	Bullet[] bulletArray = new Bullet[0];
 
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +42,7 @@ public class UI {
 		imageZombie = new ImageIcon("res//ZombieR.png");
 		image2Zombies = new ImageIcon("res//2ZombieR.png");
 		imageShovel = new ImageIcon("res//shovel.png");
+		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
 
 		// Making Menu
@@ -93,6 +94,13 @@ public class UI {
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
+								
+								//Making bullets shoot
+								Bullet bullet = new Bullet(x+1, y);
+								if(board[x][y+1].getIcon() == imageTile || board[x][y+1].getIcon() == imageZombie) {
+									board[x][y+1].setIcon(imagePea);
+								}
+									
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
 																								// 1 more space for
 																								// plants
@@ -190,7 +198,10 @@ public class UI {
 
 			}
 		});
-		 
+		
+		
+		
+		
 		
 		frame.setContentPane(contentPane);
 		// frame.setVisible(true);
