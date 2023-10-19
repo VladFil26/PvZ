@@ -8,11 +8,12 @@ public class Bullet {
 	static int health;
 	static int damage;
 	static int speed;
+	int x, y; 
 		
-		public Bullet() {
+		public Bullet(int x, int y) {
 			health = 200;
 			damage = 100;
-			speed = 1; //1 square every second
+			speed = 1000; 
 		}
 		
 		/**

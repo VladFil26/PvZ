@@ -11,6 +11,7 @@ public class PotatoMine extends Plant {
 		damage = 200;
 	}
 
+	
 	/**
 	 * Method to explode. (aka. give damage to zombie, and take damage itself)
 	 */

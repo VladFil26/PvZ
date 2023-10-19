@@ -83,4 +83,5 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
+
 }

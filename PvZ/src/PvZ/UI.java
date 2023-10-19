@@ -15,9 +15,9 @@ public class UI {
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
-	public JButton start = new JButton();
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
-			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel;
+			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea;
+
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
 			{ "02", "12", "22", "32", "42", "52", "62", "72", "85" },
@@ -26,12 +26,14 @@ public class UI {
 	String[] b = { "0", "1", "2", "3" };
 
 	Peashooter[] peashooterArray = new Peashooter[0]; // better to use class of plant instead of 2d arrays
-//	Bullet[] bullet = new Bullet();
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
 	public int plimit=20-peashooterArray.length+wallnutArray.length+potatoMineArray.length;
 	public JLabel plantLimit;
+
+	int[][] bulletArray = new int[5][9];
+	       
 
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +50,7 @@ public class UI {
 		imagePeaShooterZombie = new ImageIcon("res//PeaShooterZombie.png");
 		imageWallNutZombie = new ImageIcon("res//WallNutZombie.png");
 		imagePotatoMineZombie = new ImageIcon("res//PotatoMineZombie.png");
+		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
 
 		// Making Menu
@@ -63,13 +66,6 @@ public class UI {
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
 
-		// Start Button
-		start.setText("Start!");
-		start.setFont(new Font("Stencil", Font.BOLD, 14));
-		start.setPreferredSize(new Dimension(90, 90));
-		c.gridx = 4;
-		contentPane.add(start, c);
-
 		// Making Board
 		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
@@ -79,6 +75,8 @@ public class UI {
 				c.gridx = j;
 				board[i][j].setIcon(imageTile);
 				contentPane.add(board[i][j], c);
+				
+				bulletArray[i][j] = 0;
 			}
 		}
 		for (int i = 0; i < menu.length; i++) {
@@ -103,6 +101,14 @@ public class UI {
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
+								
+								//Making bullets shoot
+								Bullet bullet = new Bullet(x, y+1);
+								if(board[x][y+1].getIcon() == imageTile || board[x][y+1].getIcon() == imageZombie) {
+									board[x][y+1].setIcon(imagePea);
+									bulletArray[x][y+1] = 1;
+								}
+									
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
 																							// 1 more space for plants
 								for (int i = 0; i < peashooterArray.length; i++) {
@@ -192,23 +198,49 @@ public class UI {
 						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
-				// System.out.println("+1");
+				// System.out.println("+1")
+				
+				
+				//MAKING BULLET MOVE
+				if(num % 10 == 0) {
+					
+					for (int i = 4; i >= 0; i--) {
+						for (int j = 8; j >= 0; j--) {
+							
+							System.out.println(i + " " + j);
+							
+							//Changing bulletArray values (0 = no bullet, 1 = bullet)
+							bulletArray[i][j] = 0;
+							
+							//So bullet doesnt go out of bounds of array
+							if(j < 7) {
+								bulletArray[i][j+1] = 1;
+							}else {
+								bulletArray[i][j] = bulletArray[i][j];
+							}
+							
+							//Changing images on board 
+							if (bulletArray[i][j] == 0) {
+								board[i][j].setIcon(imageTile);
+								
+							}else if(bulletArray[i][j] == 1){
+								board[i][j].setIcon(imagePea);
+							}
 
+							
+						}
+					}
+				}
+				
 			}
 		});
-
-		/*
-		 * //Start Button commands start.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * 
-		 * timer.start();
-		 * 
-		 * }
-		 * 
-		 * });
-		 */
-
+		
+		timer.start(); 
+		
+		
+		
+		
+		
 		frame.setContentPane(contentPane);
 	}
 
