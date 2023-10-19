@@ -1,68 +1,81 @@
-
-//Zombie(s) moves left one tile on a JButton every second
-//have it check if theres a plant on the left of it if so eat it, yummy!!
 package PvZ;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-//import java.util.Timer;
 import javax.swing.*;
 
 public class Zombie {
-
-	int random;
-
-	Random r = new Random();
 	int healts;
-	int damage;
+	int damage=-100;
 	int x, y;
-	// private Timer timer;
-	// private int speed, num;
 
+	// Constructor
+	public Zombie() {
+		Random r = new Random();
+		x = r.nextInt(0, 4);
+		y = 9;
+	}
+	
 	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
 		boolean t = false;
 		for (int i = 0; i < peashooters.length; i++) {
-			if (peashooters[i].getX() == x && peashooters[i].getY() == y) {
-				peashooters[i].setHealth(-100);
-				peashooters=(Peashooter[])removePlant(peashooters,i);
-				
+			if (peashooters[i].getX() == x && peashooters[i].getY() == y) { //checking peashooters array with same x and y
+				if (peashooters[i].getHealth() > 0) {
+					peashooters[i].setHealth(damage);
+				} else {
+					peashooters[i].setY(10);
+				}
 				t = true;
-				System.out.println("Eating peashooter");
+				//System.out.println("Eating peashooter");
 			}
 		}
-		if (t) {
-			for (int i = 0; i < potatomines.length; i++) {
-				if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
-					potatomines[i].setHealth(-100);
-					potatomines=(PotatoMine[])removePlant(potatomines,i);
-					t = true;
-					System.out.println("Eating potatomines");
 
+		for (int i = 0; i < potatomines.length; i++) { //checking potatomines array with same x and y
+			if (potatomines[i].getX() == x && potatomines[i].getY() == y) {
+				if (potatomines[i].getHealth() > 0) {
+					potatomines[i].setHealth(damage);
+				} else
+					potatomines[i].setY(10);
+				t = true;
+				//System.out.println("Eating potatomines");
+			}
+		}
+		for (int i = 0; i < wallnuts.length; i++) { //checking wallnuts array with same x and y
+			if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
+				if (wallnuts[i].getHealth() > 0) {
+					wallnuts[i].setHealth(damage);
+				} else {
+					wallnuts[i].setY(10);
 				}
+				t = true;
+				//System.out.println("Eating wallnuts");
+			}
+		}
 
-			}
-		}
-		if (t) {
-			for (int i = 0; i < wallnuts.length; i++) {
-				if (wallnuts[i].getX() == x && wallnuts[i].getY() == y) {
-					wallnuts[i].setHealth(-100);
-					t = true;
-					System.out.println("Eating wallnuts");
-				}
-			}
-		}
 		if (!t && y >= 1) {
 			// System.out.println("move");
 			y--;
 		}
 	}
 
-	/**
-	 * Method to start timer
-	 * 
-	 * @return
-	 */
+	public ImageIcon ZombPlantImage(UI ui) { // method for setting image zombie with plant
+		for (int i = 0; i < ui.peashooterArray.length; i++) {
+			if (ui.peashooterArray[i].getX() == x && ui.peashooterArray[i].getY() == y) {
+				return ui.imagePeaShooterZombie;
+			}
+		}
+		for (int i = 0; i < ui.potatoMineArray.length; i++) {
+			if (ui.potatoMineArray[i].getX() == x && ui.potatoMineArray[i].getY() == y) {
+				return ui.imagePotatoMineZombie;
+			}
+		}
+		for (int i = 0; i < ui.wallnutArray.length; i++) {
+			if (ui.wallnutArray[i].getX() == x && ui.wallnutArray[i].getY() == y) {
+				return ui.imageWallNutZombie;
+			}
+		}
+		return ui.imageZombie;
+
+	}
 	public int getX() {
 		return x;
 	}
@@ -70,21 +83,4 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-public Object[] removePlant(Object[] plantarray,int num) {
-	Object[] temp=new Object[plantarray.length-1];
-	for(int i=0;i<num;i++) {
-		temp[i]=plantarray[i];
-	}
-	for(int i=num;i<=temp.length;i++) {
-		temp[i]=plantarray[i+1];
-	}
-	return temp;
-}
-	// Constructor
-	public Zombie() {
-		Random r = new Random();
-		x = r.nextInt(0, 4);
-		y = 9;
-	}
-
 }

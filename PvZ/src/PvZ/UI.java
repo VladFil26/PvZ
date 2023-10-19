@@ -17,7 +17,7 @@ public class UI {
 	public JButton[] menu = new JButton[4];
 	public JButton start = new JButton();
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
-			imageShovel;
+			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel;
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
 			{ "02", "12", "22", "32", "42", "52", "62", "72", "85" },
@@ -30,6 +30,8 @@ public class UI {
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
+	public int plimit=20-peashooterArray.length+wallnutArray.length+potatoMineArray.length;
+	public JLabel plantLimit;
 
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +45,9 @@ public class UI {
 		imageZombie = new ImageIcon("res//ZombieR.png");
 		image2Zombies = new ImageIcon("res//2ZombieR.png");
 		imageShovel = new ImageIcon("res//shovel.png");
+		imagePeaShooterZombie = new ImageIcon("res//PeaShooterZombie.png");
+		imageWallNutZombie = new ImageIcon("res//WallNutZombie.png");
+		imagePotatoMineZombie = new ImageIcon("res//PotatoMineZombie.png");
 		c.gridy = 0;
 
 		// Making Menu
@@ -81,7 +86,6 @@ public class UI {
 			menu[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int x = Integer.valueOf(e.getActionCommand());
-					// System.out.println(x);
 					choise = x;
 				}
 			});
@@ -90,27 +94,22 @@ public class UI {
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j].setActionCommand(a[i][j]);
 				board[i][j].addActionListener(new ActionListener() {
-
 					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
 						if (y != board[0].length - 1) {
 							switch (choise) {
 							case 0:
-								//System.out.println(peashooterArray.length);
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
-																								// 1 more space for
-																								// plants
+																							// 1 more space for plants
 								for (int i = 0; i < peashooterArray.length; i++) {
 									temp[i] = peashooterArray[i];
 								}
 								temp[peashooterArray.length] = ps;
 								peashooterArray = temp;
-								System.out.println(peashooterArray.length);
-								// System.out.print(peashooterArray.length);
 								// = peashooter.getHealth();
 								break;
 							case 1:
@@ -118,7 +117,7 @@ public class UI {
 									board[x][y].setIcon(imageWallNut);
 								Wallnut wn = new Wallnut(x, y);
 								Wallnut[] temp2 = new Wallnut[wallnutArray.length + 1]; // temporary array with 1 more
-																						// space for plants
+																					 // space for plants
 								for (int i = 0; i < wallnutArray.length; i++) {
 									temp2[i] = wallnutArray[i];
 								}
@@ -131,8 +130,7 @@ public class UI {
 									board[x][y].setIcon(imagePotatoMine);
 								PotatoMine pm = new PotatoMine(x, y);
 								PotatoMine[] temp3 = new PotatoMine[potatoMineArray.length + 1]; // temporary array with
-																									// 1 more space for
-																									// plants
+																							// 1 more space for plants
 								for (int i = 0; i < potatoMineArray.length; i++) {
 									temp3[i] = potatoMineArray[i];
 								}
@@ -140,7 +138,7 @@ public class UI {
 								potatoMineArray = temp3;
 								// potatoMineArray[x][y] = potatoMine.getHealth();
 								break;
-							case 3:
+							case 3: //-not finished 
 								if (board[x][y].getIcon() != imageTile) {
 									board[x][y].setIcon(imageTile);
 									/*
@@ -156,6 +154,7 @@ public class UI {
 								choise = -1;
 								break;
 							}
+							
 							choise = -1;
 						}
 					}
@@ -169,7 +168,7 @@ public class UI {
 		// Timer
 		timer = new Timer(speed, new ActionListener() {
 
-			int c = 0;// zombies count
+			int c = 0;// zombies counter
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,8 +189,7 @@ public class UI {
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-						System.out.println(
-								"Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
+						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
 				// System.out.println("+1");
@@ -212,8 +210,6 @@ public class UI {
 		 */
 
 		frame.setContentPane(contentPane);
-		// frame.setVisible(true);
-		// }
 	}
 
 	/**
@@ -241,22 +237,11 @@ public class UI {
 				for (int k = 0; k < zombieArray.length; k++) {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
 						// if (board[i][j].getIcon() == imageTile)
-						board[i][j].setIcon(imageZombie);
-
+						board[i][j].setIcon(zombieArray[k].ZombPlantImage(this));
 					}
 				}
 
 			}
 		}
-	}
-	public Object[] removePlant(Object[] plantarray,int num) {
-		Object[] temp=new Object[plantarray.length-1];
-		for(int i=0;i<num;i++) {
-			temp[i]=plantarray[i];
-		}
-		for(int i=num;i<=temp.length;i++) {
-			temp[i]=plantarray[i+1];
-		}
-		return temp;
 	}
 }

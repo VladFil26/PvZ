@@ -4,20 +4,11 @@
 package PvZ;
 
 public class PotatoMine extends Plant {
-	static int health;
 	static int damage;
-	int x, y;
 
 	public PotatoMine(int x, int y) {
 		super(x, y, 200);
 		damage = 200;
-	}
-
-	/**
-	 * Method to get potatomine's health
-	 */
-	public int getHealth() {
-		return health;
 	}
 
 	/**

@@ -5,18 +5,9 @@
 package PvZ;
 
 public class Wallnut extends Plant {
-	static int health;
-	int x, y;
 
 	public Wallnut(int x, int y) {
 		super(x, y, 400);
-	}
-
-	/**
-	 * Method for getting wallnut health
-	 */
-	public int getHealth() {
-		return health;
 	}
 
 	/**
@@ -27,11 +18,4 @@ public class Wallnut extends Plant {
 		return health;
 	}
 
-	// public int getX() {
-	// return x;
-//	}
-
-//	public int getY() {
-	// return y;
-	// }
 }

@@ -1,7 +1,7 @@
 package PvZ;
 
 public abstract class Plant {
-	static int health;
+	int health;
 	int x, y;
 
 	public Plant(int x, int y, int hp) {
@@ -19,5 +19,14 @@ public abstract class Plant {
 	}
 	public void setHealth(int hp) {
 		health+=hp;
+	}
+	public int getHealth() {
+		return health;
+	}
+	public void setY(int y) {
+		this.y=y;
+	}
+	public void setX(int x) {
+		this.x=x;
 	}
 }
