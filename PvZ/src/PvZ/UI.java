@@ -220,13 +220,14 @@ public class UI {
 							}
 							
 							//Changing images on board 
+							/*
 							if (bulletArray[i][j] == 0) {
 								board[i][j].setIcon(imageTile);
 								
 							}else if(bulletArray[i][j] == 1){
 								board[i][j].setIcon(imagePea);
 							}
-
+*/
 							
 						}
 					}
