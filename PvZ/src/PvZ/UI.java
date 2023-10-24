@@ -16,7 +16,8 @@ public class UI {
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
-			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea,imagePotatoMineR,imagePotatoMineExpl;
+			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea, imagePotatoMineR,
+			imagePotatoMineExpl;
 
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
@@ -30,11 +31,11 @@ public class UI {
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
 	Bullet[] bulletArray = new Bullet[0];
-	public int plimit=20-peashooterArray.length+wallnutArray.length+potatoMineArray.length;
+	public int plimit = 20 - peashooterArray.length + wallnutArray.length + potatoMineArray.length;
 	public JLabel plantLimit;
-	       
+
 	public int plimit = 20;
-	public JLabel plantLimit=new JLabel("Plants left: 20");
+	public JLabel plantLimit = new JLabel("Plants left: 20");
 
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,9 +52,9 @@ public class UI {
 		imagePeaShooterZombie = new ImageIcon("res//PeaShooterZombie.png");
 		imageWallNutZombie = new ImageIcon("res//WallNutZombie.png");
 		imagePotatoMineZombie = new ImageIcon("res//PotatoMineZombie.png");
-		imagePotatoMineR=new ImageIcon("res//PotatoMineR.png");
-		imagePotatoMineExpl=new ImageIcon("res//PotatoMineExpl.png");
-		
+		imagePotatoMineR = new ImageIcon("res//PotatoMineR.png");
+		imagePotatoMineExpl = new ImageIcon("res//PotatoMineExpl.png");
+
 		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
 
@@ -69,8 +70,8 @@ public class UI {
 		menu[1].setIcon(imageWallNut);
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
-		c.gridx=6;
-		contentPane.add(plantLimit,c);
+		c.gridx = 6;
+		contentPane.add(plantLimit, c);
 		// Making Board
 		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
@@ -95,6 +96,7 @@ public class UI {
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j].setActionCommand(a[i][j]);
 				board[i][j].addActionListener(new ActionListener() {
+
 					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
@@ -105,8 +107,7 @@ public class UI {
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
 
-								
-								plantLimit.setText("Plants left: "+plimit--);
+								plantLimit.setText("Plants left: " + plimit--);
 
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
 								// 1 more space for plants
@@ -127,7 +128,7 @@ public class UI {
 								}
 								temp2[wallnutArray.length] = wn;
 								wallnutArray = temp2;
-								plantLimit.setText("Plants left: "+plimit--);
+								plantLimit.setText("Plants left: " + plimit--);
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile)
@@ -140,7 +141,7 @@ public class UI {
 								}
 								temp3[potatoMineArray.length] = pm;
 								potatoMineArray = temp3;
-								plantLimit.setText("Plants left: "+plimit--);
+								plantLimit.setText("Plants left: " + plimit--);
 								break;
 							case 3: // -not finished
 								if (board[x][y].getIcon() != imageTile) {
@@ -193,12 +194,11 @@ public class UI {
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-					//	 System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
-						//  zombieArray[i].getY());
+						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
+						// zombieArray[i].getY());
 					}
 				}
-				
-				
+
 				// System.out.println("+1")
 
 			}
@@ -226,6 +226,9 @@ public class UI {
 		// zombie reset health
 	}
 
+	/**
+	 * Method to update arrays / images every second
+	 */
 	public void update() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
@@ -245,10 +248,20 @@ public class UI {
 		for(int l= 0; l < board.length; l++) {
 			for(int m = 0; m < board[0].length; m++) {
 				
-				if(board[l][m].getIcon() == imagePea) {
+				if(board[l][m].getIcon() == imagePea || board[l][m].getIcon() == /*ZOMBIE WITH BULLET IMAGE*/ ) {
 					board[l][m].setIcon(imageTile);
+					
+				}else if(board[l][m].getIcon() == /*BULLET WITH PS IMAGE*/) {
+					board[l][m].setIcon(imagePeashooter);
+					
+				}else if(board[l][m].getIcon() == /*BULLET WITH Potatomine IMAGE*/) {
+					board[l][m].setIcon(imagePotatoMine);
+					
+				}else if(board[l][m].getIcon() == /*BULLET WITH wallnut IMAGE*/) {
+					board[l][m].setIcon(imageWallnut);
 				}
 			}
+		
 		}
 	}
 }
