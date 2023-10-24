@@ -16,7 +16,7 @@ public class UI {
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
 	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
-			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea;
+			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea,imagePotatoMineR,imagePotatoMineExpl;
 
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
@@ -33,6 +33,8 @@ public class UI {
 	public int plimit=20-peashooterArray.length+wallnutArray.length+potatoMineArray.length;
 	public JLabel plantLimit;
 	       
+	public int plimit = 20;
+	public JLabel plantLimit=new JLabel("Plants left: 20");
 
 	public UI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +51,9 @@ public class UI {
 		imagePeaShooterZombie = new ImageIcon("res//PeaShooterZombie.png");
 		imageWallNutZombie = new ImageIcon("res//WallNutZombie.png");
 		imagePotatoMineZombie = new ImageIcon("res//PotatoMineZombie.png");
+		imagePotatoMineR=new ImageIcon("res//PotatoMineR.png");
+		imagePotatoMineExpl=new ImageIcon("res//PotatoMineExpl.png");
+		
 		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
 
@@ -64,7 +69,8 @@ public class UI {
 		menu[1].setIcon(imageWallNut);
 		menu[2].setIcon(imagePotatoMine);
 		menu[3].setIcon(imageShovel);
-
+		c.gridx=6;
+		contentPane.add(plantLimit,c);
 		// Making Board
 		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
@@ -74,7 +80,6 @@ public class UI {
 				c.gridx = j;
 				board[i][j].setIcon(imageTile);
 				contentPane.add(board[i][j], c);
-
 			}
 		}
 		for (int i = 0; i < menu.length; i++) {
@@ -100,43 +105,44 @@ public class UI {
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
 
-									
+								
+								plantLimit.setText("Plants left: "+plimit--);
+
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
-																							// 1 more space for plants
+								// 1 more space for plants
 								for (int i = 0; i < peashooterArray.length; i++) {
 									temp[i] = peashooterArray[i];
 								}
 								temp[peashooterArray.length] = ps;
 								peashooterArray = temp;
-								// = peashooter.getHealth();
 								break;
 							case 1:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imageWallNut);
 								Wallnut wn = new Wallnut(x, y);
 								Wallnut[] temp2 = new Wallnut[wallnutArray.length + 1]; // temporary array with 1 more
-																					 // space for plants
+																						// space for plants
 								for (int i = 0; i < wallnutArray.length; i++) {
 									temp2[i] = wallnutArray[i];
 								}
 								temp2[wallnutArray.length] = wn;
 								wallnutArray = temp2;
-								// wallnutArray[x][y] = wallnut.getHealth();
+								plantLimit.setText("Plants left: "+plimit--);
 								break;
 							case 2:
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePotatoMine);
 								PotatoMine pm = new PotatoMine(x, y);
 								PotatoMine[] temp3 = new PotatoMine[potatoMineArray.length + 1]; // temporary array with
-																							// 1 more space for plants
+								// 1 more space for plants
 								for (int i = 0; i < potatoMineArray.length; i++) {
 									temp3[i] = potatoMineArray[i];
 								}
 								temp3[potatoMineArray.length] = pm;
 								potatoMineArray = temp3;
-								// potatoMineArray[x][y] = potatoMine.getHealth();
+								plantLimit.setText("Plants left: "+plimit--);
 								break;
-							case 3: //-not finished 
+							case 3: // -not finished
 								if (board[x][y].getIcon() != imageTile) {
 									board[x][y].setIcon(imageTile);
 									/*
@@ -152,7 +158,7 @@ public class UI {
 								choise = -1;
 								break;
 							}
-							
+
 							choise = -1;
 						}
 					}
@@ -187,57 +193,19 @@ public class UI {
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
+					//	 System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
+						//  zombieArray[i].getY());
 					}
 				}
 				
 				
 				// System.out.println("+1")
-				
-				
-				/*
-				//MAKING BULLET MOVE
-				if(num % 10 == 0) {
-					
-					for (int i = 4; i >= 0; i--) {
-						for (int j = 8; j >= 0; j--) {
-							
-							System.out.println(i + " " + j);
-							
-							//Changing bulletArray values (0 = no bullet, 1 = bullet)
-							bulletArray[i][j] = 0;
-							
-							//So bullet doesnt go out of bounds of array
-							if(j < 7) {
-								bulletArray[i][j+1] = 1;
-							}else {
-								bulletArray[i][j] = bulletArray[i][j];
-							}
-							
-							//Changing images on board 
-						
-							if (bulletArray[i][j] == 0 ) {
-								board[i][j].setIcon(imageTile);
-								
-							}else if(bulletArray[i][j] == 1){
-								board[i][j].setIcon(imagePea);
-							}
 
-							
-						}
-					}
-				}
-				*/
-				
 			}
 		});
-		
-		timer.start(); 
-		
-		
-		
-		
-		
+
+		timer.start();
+
 		frame.setContentPane(contentPane);
 	}
 
@@ -261,7 +229,7 @@ public class UI {
 	public void update() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
-				if (board[i][j].getIcon() == imageZombie)
+				if (board[i][j].getIcon() == imageZombie||board[i][j].getIcon() ==imagePotatoMineExpl)
 					board[i][j].setIcon(imageTile);
 				for (int k = 0; k < zombieArray.length; k++) {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
