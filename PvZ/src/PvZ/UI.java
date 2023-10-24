@@ -29,10 +29,9 @@ public class UI {
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
+	Bullet[] bulletArray = new Bullet[0];
 	public int plimit=20-peashooterArray.length+wallnutArray.length+potatoMineArray.length;
 	public JLabel plantLimit;
-
-	int[][] bulletArray = new int[5][9];
 	       
 
 	public UI() {
@@ -75,8 +74,7 @@ public class UI {
 				c.gridx = j;
 				board[i][j].setIcon(imageTile);
 				contentPane.add(board[i][j], c);
-				
-				bulletArray[i][j] = 0;
+
 			}
 		}
 		for (int i = 0; i < menu.length; i++) {
@@ -101,13 +99,7 @@ public class UI {
 								if (board[x][y].getIcon() == imageTile)
 									board[x][y].setIcon(imagePeaShooter);
 								Peashooter ps = new Peashooter(x, y);
-								
-								//Making bullets shoot
-								Bullet bullet = new Bullet(x, y+1);
-								if(board[x][y+1].getIcon() == imageTile || board[x][y+1].getIcon() == imageZombie) {
-									board[x][y+1].setIcon(imagePea);
-									bulletArray[x][y+1] = 1;
-								}
+
 									
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
 																							// 1 more space for plants
@@ -198,9 +190,12 @@ public class UI {
 						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " + zombieArray[i].getY());
 					}
 				}
+				
+				
 				// System.out.println("+1")
 				
 				
+				/*
 				//MAKING BULLET MOVE
 				if(num % 10 == 0) {
 					
@@ -220,18 +215,19 @@ public class UI {
 							}
 							
 							//Changing images on board 
-							/*
-							if (bulletArray[i][j] == 0) {
+						
+							if (bulletArray[i][j] == 0 ) {
 								board[i][j].setIcon(imageTile);
 								
 							}else if(bulletArray[i][j] == 1){
 								board[i][j].setIcon(imagePea);
 							}
-*/
+
 							
 						}
 					}
 				}
+				*/
 				
 			}
 		});
@@ -274,6 +270,16 @@ public class UI {
 					}
 				}
 
+			}
+		}
+		
+		//for bullet updating
+		for(int l= 0; l < board.length; l++) {
+			for(int m = 0; m < board[0].length; m++) {
+				
+				if(board[l][m].getIcon() == imagePea) {
+					board[l][m].setIcon(imageTile);
+				}
 			}
 		}
 	}

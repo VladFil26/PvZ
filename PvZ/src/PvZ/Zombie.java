@@ -4,7 +4,7 @@ import java.util.Random;
 import javax.swing.*;
 
 public class Zombie {
-	int healts;
+	int health;
 	int damage=-100;
 	int x, y;
 
@@ -13,6 +13,7 @@ public class Zombie {
 		Random r = new Random();
 		x = r.nextInt(0, 4);
 		y = 9;
+		health = 200;
 	}
 	
 	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
@@ -83,5 +84,19 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
+	
+	public int getHealth() {
+		return health; 
+	}
+	
+	public void setY(int y) {
+		this.y=y;
+	}
+	public void setX(int x) {
+		this.x=x;
+	}
 
+	public void setHealth(int hp) {
+		health+=hp;
+	}
 }
