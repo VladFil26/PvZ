@@ -59,7 +59,7 @@ public class Bullet {
 		}
 		
 		/**
-		 * Method for hitting zombies
+		 * Method for shooting zombies
 		 **/
 		public void shootZombie(Zombie[] zombies, Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
 			boolean t = false;
