@@ -32,7 +32,7 @@ public class UI {
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
 	Bullet[] bulletArray = new Bullet[0];
-	public int plimit = 20 - peashooterArray.length + wallnutArray.length + potatoMineArray.length;
+	public int plimit = 19;
 	public JLabel plantLimit = new JLabel("Plants left: 20");
 
 	public UI() {
@@ -156,13 +156,13 @@ public class UI {
 								choise = -1;
 								break;
 							}
-
 							choise = -1;
-						//}
-					//}
-				//});
+						}
+					}
+				});
 			}
-		//}
+		}
+		 
 		// For Timer
 		int speed = 500;
 		num = 0;
@@ -262,7 +262,7 @@ public class UI {
 				for (int k = 0; k < bulletArray.length; k++) {
 					if (bulletArray[k].getX() == i && bulletArray[k].getY() == j) {
 						// if (board[i][j].getIcon() == imageTile)
-						board[i][j].setIcon(bulletArray[k].bulletXImage(this));
+						board[i][j].setIcon(bulletArray[k].BulletXImage(this));
 					}
 				}
 
@@ -293,3 +293,4 @@ public class UI {
 			}
 		}
 	}
+}
