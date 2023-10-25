@@ -15,9 +15,10 @@ public class UI {
 	GridBagConstraints c = new GridBagConstraints();
 	public JButton[][] board = new JButton[5][9];
 	public JButton[] menu = new JButton[4];
-	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie,
-			image2Zombies,imagePeaShooterZombie,imagePotatoMineZombie,imageWallNutZombie,imageShovel,imagePea,
-			imagePotatoMineR,imagePotatoMineXBullet,imageWallNutXBullet,imagePeaShooterXBullet,imagePotatoMineExpl, imageTileXBullet;
+	ImageIcon imageTile, imagePeaShooter, imageWallNut, imagePotatoMine, imageBackground, imageZombie, image2Zombies,
+			imagePeaShooterZombie, imagePotatoMineZombie, imageWallNutZombie, imageShovel, imagePea, imagePotatoMineR,
+			imagePotatoMineXBullet, imageWallNutXBullet, imagePeaShooterXBullet, imagePotatoMineExpl, imageTileXBullet,
+			imageZombieXBullet;
 
 	String[][] a = { { "00", "10", "20", "30", "40", "50", "60", "70", "80" },
 			{ "01", "11", "21", "31", "41", "51", "61", "71", "81" },
@@ -55,6 +56,7 @@ public class UI {
 		imageWallNutXBullet=new ImageIcon("res//WallNutXBullet.png");
 		imagePeaShooterXBullet=new ImageIcon("res//PeaShooterXBullet.png");
 		imageTileXBullet=new ImageIcon("res//TileXBullet.png");
+		imageZombieXBullet=new ImageIcon("res//ZombieXBullet.png");
 		
 		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
@@ -156,11 +158,11 @@ public class UI {
 							}
 
 							choise = -1;
-						}
-					}
-				});
+						//}
+					//}
+				//});
 			}
-		}
+		//}
 		// For Timer
 		int speed = 500;
 		num = 0;
@@ -191,6 +193,7 @@ public class UI {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
 						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
 						// zombieArray[i].getY());
+						bulletArray[i].shootZombie(zombieArray);
 					}
 				}
 
@@ -239,25 +242,31 @@ public class UI {
 			}
 		}
 
-		
-		//for bullet updating
-		for(int i = 0; i < board.length; i++) {
-			for(int j= 0; j < board[0].length; j++) {
-				
-				if(board[i][j].getIcon()== imageTileXBullet || board[i][j].getIcon() == imageZombieXBullet ) {
+		// for bullet updating
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+
+				if (board[i][j].getIcon() == imageTileXBullet || board[i][j].getIcon() == imageZombieXBullet) {
 					board[i][j].setIcon(imageTile);
-					
-				}else if(board[i][j].getIcon() == imagePeaShooterXBullet) {
+
+				} else if (board[i][j].getIcon() == imagePeaShooterXBullet) {
 					board[i][j].setIcon(imagePeaShooter);
-					
-				}else if(board[i][j].getIcon() == imagePotatoMineXBullet) {
+
+				} else if (board[i][j].getIcon() == imagePotatoMineXBullet) {
 					board[i][j].setIcon(imagePotatoMine);
-					
-				}else if(board[i][j].getIcon() == imageWallNutXBullet) {
+
+				} else if (board[i][j].getIcon() == imageWallNutXBullet) {
 					board[i][j].setIcon(imageWallNut);
 				}
+
+				for (int k = 0; k < bulletArray.length; k++) {
+					if (bulletArray[k].getX() == i && bulletArray[k].getY() == j) {
+						// if (board[i][j].getIcon() == imageTile)
+						board[i][j].setIcon(bulletArray[k].bulletXImage(this));
+					}
+				}
+
 			}
-		
 		}
 	}
 
@@ -284,4 +293,3 @@ public class UI {
 			}
 		}
 	}
-}

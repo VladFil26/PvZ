@@ -66,18 +66,20 @@ public class Bullet {
 	 * @param ui
 	 * @return
 	 */
-	public ImageIcon BulletTogetherImage(UI ui) {
+	public ImageIcon BulletXImage(UI ui) {
 
 		for (int i = 0; i < ui.peashooterArray.length; i++) {
 			if (ui.peashooterArray[i].getX() == x && ui.peashooterArray[i].getY() == y) {
 				return ui.imagePeaShooterXBullet;
 			}
 		}
+
 		for (int i = 0; i < ui.potatoMineArray.length; i++) {
 			if (ui.potatoMineArray[i].getX() == x && ui.potatoMineArray[i].getY() == y) {
 				return ui.imagePotatoMineXBullet;
 			}
 		}
+
 		for (int i = 0; i < ui.wallnutArray.length; i++) {
 			if (ui.wallnutArray[i].getX() == x && ui.wallnutArray[i].getY() == y) {
 				return ui.imageWallNutXBullet;
@@ -94,16 +96,17 @@ public class Bullet {
 		boolean t = false;
 
 		for (int i = 0; i < zombies.length; i++) {
-			
+
 			if (zombies[i].getX() == x && zombies[i].getY() == y) {
-				t = true; 
-				
+				t = true;
+
 				if (zombies[i].getHealth() > 0) {
 					zombies[i].setHealth(damage);
-					
-					if(zombies[i].getHealth() <= 0) {
+
+					if (zombies[i].getHealth() <= 0) {
+						t = false;
 					}
-					
+
 				} else {
 
 				}
@@ -114,8 +117,17 @@ public class Bullet {
 		if (!t && y >= 1) {
 			// System.out.println("move");
 			y--;
+		}else if (!t) {
+			
 		}
 
 	}
+	public void setY(int y) {
+		this.y=y;
+	}
+	public void setX(int x) {
+		this.x=x;
+	}
+
 
 }
