@@ -70,27 +70,27 @@ public class Bullet {
 
 		for (int i = 0; i < ui.peashooterArray.length; i++) {
 			if (ui.peashooterArray[i].getX() == x && ui.peashooterArray[i].getY() == y) {
-				return ui.imagePeaShooterZombie;
+				return ui.imagePeaShooterXBullet;
 			}
 		}
 		for (int i = 0; i < ui.potatoMineArray.length; i++) {
 			if (ui.potatoMineArray[i].getX() == x && ui.potatoMineArray[i].getY() == y) {
-				return ui.imagePotatoMineExpl;
+				return ui.imagePotatoMineXBullet;
 			}
 		}
 		for (int i = 0; i < ui.wallnutArray.length; i++) {
 			if (ui.wallnutArray[i].getX() == x && ui.wallnutArray[i].getY() == y) {
-				return ui.imageWallNutZombie;
+				return ui.imageWallNutXBullet;
 			}
 		}
-		return ui.imageZombie;
+		return ui.imageTileXBullet;
 
 	}
 
 	/**
 	 * Method for shooting zombies
 	 **/
-	public void shootZombie(Zombie[] zombies, Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
+	public void shootZombie(Zombie[] zombies) {
 		boolean t = false;
 
 		for (int i = 0; i < zombies.length; i++) {
@@ -102,7 +102,6 @@ public class Bullet {
 					zombies[i].setHealth(damage);
 					
 					if(zombies[i].getHealth() <= 0) {
-						
 					}
 					
 				} else {
