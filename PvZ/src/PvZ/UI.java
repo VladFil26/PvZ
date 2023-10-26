@@ -6,9 +6,10 @@ import java.awt.event.*;
 import javax.swing.Timer;
 
 public class UI {
+	public String status;
 	static int choise;
 	static int limit;
-	static Timer timer;
+	public static Timer timer;
 	static int num;
 	public JFrame frame = new JFrame("PvZ Simulation");
 	JPanel contentPane = new JPanel(new GridBagLayout());
@@ -31,7 +32,6 @@ public class UI {
 	Wallnut[] wallnutArray = new Wallnut[0];
 	PotatoMine[] potatoMineArray = new PotatoMine[0];
 	Zombie[] zombieArray = new Zombie[0];
-	Bullet[] bulletArray = new Bullet[0];
 	public int plimit = 19;
 	public JLabel plantLimit = new JLabel("Plants left: 20");
 
@@ -52,12 +52,12 @@ public class UI {
 		imagePotatoMineZombie = new ImageIcon("res//PotatoMineZombie.png");
 		imagePotatoMineR = new ImageIcon("res//PotatoMineR.png");
 		imagePotatoMineExpl = new ImageIcon("res//PotatoMineExpl.png");
-		imagePotatoMineXBullet=new ImageIcon("res//PotatoMineXBullet.png");
-		imageWallNutXBullet=new ImageIcon("res//WallNutXBullet.png");
-		imagePeaShooterXBullet=new ImageIcon("res//PeaShooterXBullet.png");
-		imageTileXBullet=new ImageIcon("res//TileXBullet.png");
-		imageZombieXBullet=new ImageIcon("res//ZombieXBullet.png");
-		
+		imagePotatoMineXBullet = new ImageIcon("res//PotatoMineXBullet.png");
+		imageWallNutXBullet = new ImageIcon("res//WallNutXBullet.png");
+		imagePeaShooterXBullet = new ImageIcon("res//PeaShooterXBullet.png");
+		imageTileXBullet = new ImageIcon("res//TileXBullet.png");
+		imageZombieXBullet = new ImageIcon("res//ZombieXBullet.png");
+
 		imagePea = new ImageIcon("res//pea.png");
 		c.gridy = 0;
 
@@ -100,7 +100,7 @@ public class UI {
 				board[i][j].setActionCommand(a[i][j]);
 				board[i][j].addActionListener(new ActionListener() {
 
-	public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent e) {
 						int y = Integer.valueOf(e.getActionCommand().substring(0, 1)); // -current index
 						int x = Integer.valueOf(e.getActionCommand().substring(1));// -current index
 						if (y != board[0].length - 1) {
@@ -162,7 +162,7 @@ public class UI {
 				});
 			}
 		}
-		 
+
 		// For Timer
 		int speed = 500;
 		num = 0;
@@ -191,9 +191,14 @@ public class UI {
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
-						// zombieArray[i].getY());
-						bulletArray[i].shootZombie(zombieArray);
+						System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
+								+ zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
+
+					}
+				}
+				if (num % 6 == 0) {
+					for (int i = 0; i < peashooterArray.length; i++) {
+						peashooterArray[i].b.move();
 					}
 				}
 
@@ -208,66 +213,38 @@ public class UI {
 	}
 
 	/**
-	 * Method to reset simulation
-	 */
-	public void reset() {
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board.length; j++) {
-
-				board[i][j].setIcon(imageTile);
-			}
-		}
-		// peashooter.resetpsHealth();
-		// bullet.resetbHealth();
-		// wallnut.resetwHealth();
-		// potatoMine.resetpmHealth();
-		// zombie reset health
-	}
-
-	/**
 	 * Method to update arrays / images every second
 	 */
 	public void update() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
-				if (board[i][j].getIcon() == imageZombie || board[i][j].getIcon() == imagePotatoMineExpl)
+				if (board[i][j].getIcon() == imageZombie || board[i][j].getIcon() == imagePotatoMineExpl
+						|| board[i][j].getIcon() == imageTileXBullet)
 					board[i][j].setIcon(imageTile);
+				if (board[i][j].getIcon() == imagePeaShooterXBullet)
+					board[i][j].setIcon(imagePeaShooter);
+				if (board[i][j].getIcon() == imagePotatoMineXBullet)
+					board[i][j].setIcon(imagePotatoMine);
+				if (board[i][j].getIcon() == imageWallNutXBullet)
+					board[i][j].setIcon(imageWallNut);
+
 				for (int k = 0; k < zombieArray.length; k++) {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
-						// if (board[i][j].getIcon() == imageTile)
 						board[i][j].setIcon(zombieArray[k].ZombPlantImage(this));
 					}
+					if ( zombieArray[k].getY() == 0) {
+						status="Lose";
+					}
 				}
-
-			}
-		}
-
-		// for bullet updating
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[0].length; j++) {
-
-				if (board[i][j].getIcon() == imageTileXBullet || board[i][j].getIcon() == imageZombieXBullet) {
-					board[i][j].setIcon(imageTile);
-
-				} else if (board[i][j].getIcon() == imagePeaShooterXBullet) {
-					board[i][j].setIcon(imagePeaShooter);
-
-				} else if (board[i][j].getIcon() == imagePotatoMineXBullet) {
-					board[i][j].setIcon(imagePotatoMine);
-
-				} else if (board[i][j].getIcon() == imageWallNutXBullet) {
-					board[i][j].setIcon(imageWallNut);
-				}
-
-				for (int k = 0; k < bulletArray.length; k++) {
-					if (bulletArray[k].getX() == i && bulletArray[k].getY() == j) {
-						// if (board[i][j].getIcon() == imageTile)
-						board[i][j].setIcon(bulletArray[k].BulletXImage(this));
+				for (int k = 0; k < peashooterArray.length; k++) {
+					if (peashooterArray[k].b.getX() == i && peashooterArray[k].b.getY() == j) {
+						board[i][j].setIcon(peashooterArray[k].b.BulletXImage(this));
 					}
 				}
 
 			}
 		}
+		
 	}
 
 	public void removePlant(int x, int y) {
