@@ -17,12 +17,4 @@ public class PotatoMine extends Plant {
 		return damage;
 	}
 
-	/**
-	 * Method for resetting health
-	 */
-	public int resetpmHealth() {
-		health = 200;
-		return health;
-	}
-
 }
