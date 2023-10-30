@@ -176,6 +176,7 @@ public class UI {
 			public void actionPerformed(ActionEvent e) {
 				num = num + 1;
 				update();
+				endSimulation();
 				if (num % 20 == 0 && c < limit) {
 					Zombie zomb = new Zombie();
 					Zombie[] temp = new Zombie[zombieArray.length + 1];
@@ -232,9 +233,6 @@ public class UI {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
 						board[i][j].setIcon(zombieArray[k].ZombPlantImage(this));
 					}
-					if (zombieArray[k].getY() == 0) {
-						status = "Lose";
-					}
 				}
 				for (int k = 0; k < peashooterArray.length; k++) {
 					if (peashooterArray[k].b.getX() == i && peashooterArray[k].b.getY() == j) {
@@ -272,10 +270,22 @@ public class UI {
 	}
 
 	public void endSimulation() {
-
 		for (int i = 0; i < zombieArray.length; i++) {
-			
-		}
+			if (zombieArray[i].getHealth() != 0) {
+				status = null;
 
+			}
+			if (zombieArray[i].getY() == 0) {
+				status = "Lose";
+			}
+			if (zombieArray[i].getHealth() <= 0) {
+				status = "Win";
+
+			}
+		}
+		if (status != null) {
+			timer.stop();
+			WL_Window wl = new WL_Window(status);
+		}
 	}
 }
