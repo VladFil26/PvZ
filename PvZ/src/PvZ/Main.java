@@ -1,8 +1,5 @@
 package PvZ;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
 
 public class Main {
@@ -12,7 +9,6 @@ public class Main {
 		StartWindow sw=new StartWindow();
 		sw.buttonPress(ui);
 		ui.timer.start();
-
 		
 	}
 }

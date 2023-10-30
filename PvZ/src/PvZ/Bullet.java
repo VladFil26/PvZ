@@ -1,33 +1,16 @@
-//Kinzie Friesen
-//Oct 5, 2023
-//This is a class for the Peashooter's bullet in the PvZ simulation
-
 package PvZ;
-
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 
 public class Bullet {
-	static int health;
-	static int damage;
-	static int speed;
-	int x, y;
+	int damage;
+	int x, y, start_y;
 
-	public Bullet() {
-		Random r = new Random();
-		health = 200;
+	public Bullet(int x, int y) {
+		this.x = x;
+		this.y = y + 1;
+		start_y = y + 1;
 		damage = -100;
-		speed = 1000;
-		x = r.nextInt(0, 4);
-		y = 9;
-	}
-
-	/**
-	 * Method for getting health
-	 */
-	public int getHealth() {
-		return health;
 	}
 
 	/**
@@ -35,21 +18,6 @@ public class Bullet {
 	 */
 	public int getDamage() {
 		return damage;
-	}
-
-	/**
-	 * method to get speed
-	 */
-	public int getSpeed() {
-		return speed;
-	}
-
-	/**
-	 * Method for resetting health
-	 */
-	public int resetbHealth() {
-		health = 200;
-		return health;
 	}
 
 	public int getX() {
@@ -66,6 +34,14 @@ public class Bullet {
 	 * @param ui
 	 * @return
 	 */
+	public void move() {
+		if (y < 9)
+			y++;
+		else if (y == 9) {
+			y = start_y;
+		}
+	}
+
 	public ImageIcon BulletXImage(UI ui) {
 
 		for (int i = 0; i < ui.peashooterArray.length; i++) {
@@ -85,49 +61,23 @@ public class Bullet {
 				return ui.imageWallNutXBullet;
 			}
 		}
+		for (int i = 0; i < ui.zombieArray.length; i++) {
+			if (ui.zombieArray[i].getX() == x && ui.zombieArray[i].getY() == y) {
+				ui.zombieArray[i].setHealth(damage);
+				y = start_y;
+				return ui.imageZombieXBullet;
+			}
+		}
 		return ui.imageTileXBullet;
 
 	}
 
-	/**
-	 * Method for shooting zombies
-	 **/
-	public void shootZombie(Zombie[] zombies) {
-		boolean t = false;
-
-		for (int i = 0; i < zombies.length; i++) {
-
-			if (zombies[i].getX() == x && zombies[i].getY() == y) {
-				t = true;
-
-				if (zombies[i].getHealth() > 0) {
-					zombies[i].setHealth(damage);
-
-					if (zombies[i].getHealth() <= 0) {
-						t = false;
-					}
-
-				} else {
-
-				}
-
-			}
-		}
-
-		if (!t && y >= 1) {
-			// System.out.println("move");
-			y--;
-		}else if (!t) {
-			
-		}
-
-	}
 	public void setY(int y) {
-		this.y=y;
-	}
-	public void setX(int x) {
-		this.x=x;
+		this.y = y;
 	}
 
+	public void setX(int x) {
+		this.x = x;
+	}
 
 }

@@ -17,16 +17,20 @@ public abstract class Plant {
 	public int getY() {
 		return y;
 	}
+
 	public void setHealth(int hp) {
-		health+=hp;
+		health += hp;
 	}
+
 	public int getHealth() {
 		return health;
 	}
+
 	public void setY(int y) {
-		this.y=y;
+		this.y = y;
 	}
+
 	public void setX(int x) {
-		this.x=x;
+		this.x = x;
 	}
 }

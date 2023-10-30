@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Zombie {
 	int health;
-	int damage=-100;
+	int damage = -100;
 
 	int x, y;
 
@@ -23,7 +23,8 @@ public class Zombie {
 		if (health > 0) {
 			boolean t = false;
 			for (int i = 0; i < peashooters.length; i++) {
-				if (peashooters[i].getX() == x && peashooters[i].getY() == y) { // checking peashooters array with same x and y
+				if (peashooters[i].getX() == x && peashooters[i].getY() == y) { // checking peashooters array with same
+																				// x and y
 					if (peashooters[i].getHealth() > 0) {
 						peashooters[i].setHealth(damage);
 					} else {
@@ -61,6 +62,8 @@ public class Zombie {
 				// System.out.println("move");
 				y--;
 			}
+		} else {
+			y = 10;
 		}
 	}
 
@@ -91,20 +94,21 @@ public class Zombie {
 	public int getY() {
 		return y;
 	}
-	
+
 	public int getHealth() {
-		return health; 
+		return health;
 	}
-	
+
 	public void setY(int y) {
-		this.y=y;
+		this.y = y;
 	}
+
 	public void setX(int x) {
-		this.x=x;
+		this.x = x;
 	}
 
 	public void setHealth(int hp) {
-		health+=hp;
+		health += hp;
 	}
 
 }
