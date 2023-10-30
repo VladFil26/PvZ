@@ -193,6 +193,8 @@ public class UI {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
 						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: " +
 						// zombieArray[i].getY());
+					}
+					for(int i = 0; i < bulletArray.length; i++) {
 						bulletArray[i].shootZombie(zombieArray);
 					}
 				}
