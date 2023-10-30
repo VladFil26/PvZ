@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class WL_Window {
-	public boolean restart=false;
+	public boolean restart = false;
 	public JFrame frame;
 	JPanel contentPane = new JPanel(new GridBagLayout());
 	GridBagConstraints c = new GridBagConstraints();
@@ -25,11 +25,12 @@ public class WL_Window {
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
 	}
+
 	public void buttonPress(UI ui) {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				restart=true;
+				restart = true;
 			}
 
 		});
