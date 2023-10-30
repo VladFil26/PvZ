@@ -57,10 +57,14 @@ public class UI {
 		imagePeaShooterXBullet = new ImageIcon("res//PeaShooterXBullet.png");
 		imageTileXBullet = new ImageIcon("res//TileXBullet.png");
 		imageZombieXBullet = new ImageIcon("res//ZombieXBullet.png");
-
 		imagePea = new ImageIcon("res//pea.png");
+		
 		c.gridy = 0;
 
+		plantLimit.setFont(new Font("Stencil", Font.PLAIN, 11));
+		plantLimit.setBackground(Color.WHITE);
+		plantLimit.setForeground(Color.BLACK);
+		
 		// Making Menu
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
