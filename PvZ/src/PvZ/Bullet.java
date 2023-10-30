@@ -13,27 +13,7 @@ public class Bullet {
 		damage = -100;
 	}
 
-	/**
-	 * Method to get damage it can do
-	 */
-	public int getDamage() {
-		return damage;
-	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	/**
-	 * Method for setting bullet image with plant or zombie
-	 * 
-	 * @param ui
-	 * @return
-	 */
 	public void move() {
 		if (y < 9)
 			y++;
@@ -42,6 +22,12 @@ public class Bullet {
 		}
 	}
 
+	/**
+	 * Method for setting bullet image with plant or zombie
+	 * 
+	 * @param ui
+	 * @return
+	 */
 	public ImageIcon BulletXImage(UI ui) {
 
 		for (int i = 0; i < ui.peashooterArray.length; i++) {
@@ -79,5 +65,12 @@ public class Bullet {
 	public void setX(int x) {
 		this.x = x;
 	}
+	
+	public int getX() {
+		return x;
+	}
 
+	public int getY() {
+		return y;
+	}
 }
