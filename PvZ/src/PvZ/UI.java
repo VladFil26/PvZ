@@ -232,8 +232,8 @@ public class UI {
 					if (zombieArray[k].getX() == i && zombieArray[k].getY() == j) {
 						board[i][j].setIcon(zombieArray[k].ZombPlantImage(this));
 					}
-					if ( zombieArray[k].getY() == 0) {
-						status="Lose";
+					if (zombieArray[k].getY() == 0) {
+						status = "Lose";
 					}
 				}
 				for (int k = 0; k < peashooterArray.length; k++) {
@@ -244,7 +244,7 @@ public class UI {
 
 			}
 		}
-		
+
 	}
 
 	public void removePlant(int x, int y) {
@@ -269,5 +269,13 @@ public class UI {
 
 			}
 		}
+	}
+
+	public void endSimulation() {
+
+		for (int i = 0; i < zombieArray.length; i++) {
+			
+		}
+
 	}
 }
