@@ -11,6 +11,7 @@ public class UI {
 	static int limit;
 	public static Timer timer;
 	static int num;
+	public boolean restart = false;
 	public JFrame frame = new JFrame("PvZ Simulation");
 	JPanel contentPane = new JPanel(new GridBagLayout());
 	GridBagConstraints c = new GridBagConstraints();
@@ -58,13 +59,13 @@ public class UI {
 		imageTileXBullet = new ImageIcon("res//TileXBullet.png");
 		imageZombieXBullet = new ImageIcon("res//ZombieXBullet.png");
 		imagePea = new ImageIcon("res//pea.png");
-		
+
 		c.gridy = 0;
 
 		plantLimit.setFont(new Font("Stencil", Font.PLAIN, 11));
 		plantLimit.setBackground(Color.WHITE);
 		plantLimit.setForeground(Color.BLACK);
-		
+
 		// Making Menu
 		for (int i = 0; i < menu.length; i++) {
 			c.gridx = i;
@@ -117,7 +118,8 @@ public class UI {
 								plantLimit.setText("Plants left: " + plimit--);
 
 								Peashooter[] temp = new Peashooter[peashooterArray.length + 1]; // temporary array with
-								// 1 more space for plants
+																								// 1 more space for
+																								// plants
 								for (int i = 0; i < peashooterArray.length; i++) {
 									temp[i] = peashooterArray[i];
 								}
@@ -142,7 +144,8 @@ public class UI {
 									board[x][y].setIcon(imagePotatoMine);
 								PotatoMine pm = new PotatoMine(x, y);
 								PotatoMine[] temp3 = new PotatoMine[potatoMineArray.length + 1]; // temporary array with
-								// 1 more space for plants
+																									// 1 more space for
+																									// plants
 								for (int i = 0; i < potatoMineArray.length; i++) {
 									temp3[i] = potatoMineArray[i];
 								}
@@ -189,16 +192,13 @@ public class UI {
 					}
 					temp[zombieArray.length] = zomb;
 					zombieArray = temp;
-					System.out.println("+1");
 					c++;
 				}
-
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-						System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
-								+ zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
-
+						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
+						//		+ zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
 					}
 				}
 				if (num % 6 == 0) {
@@ -206,9 +206,6 @@ public class UI {
 						peashooterArray[i].b.move();
 					}
 				}
-
-				// System.out.println("+1")
-
 			}
 		});
 
@@ -289,7 +286,8 @@ public class UI {
 		}
 		if (status != null) {
 			timer.stop();
-			WL_Window wl = new WL_Window(status);
+			frame.setVisible(false);
+			WL_Window wl = new WL_Window(this);
 		}
 	}
 }

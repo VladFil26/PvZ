@@ -12,13 +12,13 @@ public class WL_Window {
 	JButton restartButton = new JButton("Try again?");
 	JLabel winLoseLabel;
 
-	public WL_Window(String s) {
+	public WL_Window(UI ui) {
 		frame = new JFrame("End Simulation");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 300);
 		frame.setLocationRelativeTo(null);
 		
-		winLoseLabel = new JLabel("You " + s + "!");
+		winLoseLabel = new JLabel("You " + ui.status + "!");
 		winLoseLabel.setFont(new Font("Stencil", Font.BOLD, 30));
 		winLoseLabel.setBackground(Color.WHITE);
 		winLoseLabel.setForeground(Color.BLACK);
@@ -29,19 +29,15 @@ public class WL_Window {
 		contentPane.add(winLoseLabel, c);
 		c.gridy = 1;
 		contentPane.add( restartButton, c);
-		
+		restartButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				ui.restart=true;
+			}
+		});
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
 	}
 
-	public void buttonPress(UI ui) {
-		 restartButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				restart = true;
-			}
 
-		});
-
-	}
 }
