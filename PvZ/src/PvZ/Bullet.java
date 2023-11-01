@@ -13,7 +13,6 @@ public class Bullet {
 		damage = -100;
 	}
 
-
 	public void move() {
 		if (y < 9)
 			y++;
@@ -65,7 +64,7 @@ public class Bullet {
 	public void setX(int x) {
 		this.x = x;
 	}
-	
+
 	public int getX() {
 		return x;
 	}

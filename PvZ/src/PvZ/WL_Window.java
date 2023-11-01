@@ -17,27 +17,26 @@ public class WL_Window {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 300);
 		frame.setLocationRelativeTo(null);
-		
+
 		winLoseLabel = new JLabel("You " + ui.status + "!");
 		winLoseLabel.setFont(new Font("Stencil", Font.BOLD, 30));
 		winLoseLabel.setBackground(Color.WHITE);
 		winLoseLabel.setForeground(Color.BLACK);
-	
+
 		restartButton.setFont(new Font("Stencil", Font.PLAIN, 14));
-		
+
 		c.gridy = 0;
 		contentPane.add(winLoseLabel, c);
 		c.gridy = 1;
-		contentPane.add( restartButton, c);
+		contentPane.add(restartButton, c);
 		restartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				ui.restart=true;
+				ui.restart = true;
 			}
 		});
 		frame.setContentPane(contentPane);
 		frame.setVisible(true);
 	}
-
 
 }
