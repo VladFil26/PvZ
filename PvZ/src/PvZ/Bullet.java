@@ -16,14 +16,10 @@ public class Bullet {
 		start_y = y + 1;
 		damage = -100;
 	}
-
-<<<<<<< HEAD
-=======
-
+	
 	/**
 	 * Method for moving bullet
 	 */
->>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 	public void move() {
 		if (y < 9)
 			y++;

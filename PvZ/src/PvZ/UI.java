@@ -200,13 +200,10 @@ public class UI {
 				}
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
-<<<<<<< HEAD
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
 						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
 						// + zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
-=======
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
->>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 					}
 				}
 				if (num % 6 == 0) {

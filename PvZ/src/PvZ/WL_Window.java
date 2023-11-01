@@ -32,12 +32,8 @@ public class WL_Window {
 		c.gridy = 0;
 		contentPane.add(winLoseLabel, c);
 		c.gridy = 1;
-<<<<<<< HEAD
 		contentPane.add(restartButton, c);
-=======
 		contentPane.add( restartButton, c);
-		
->>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 		restartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
