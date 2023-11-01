@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Class for peashooter's bullet
+ */
 package PvZ;
 
 import javax.swing.ImageIcon;
@@ -13,6 +17,13 @@ public class Bullet {
 		damage = -100;
 	}
 
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Method for moving bullet
+	 */
+>>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 	public void move() {
 		if (y < 9)
 			y++;
@@ -57,6 +68,9 @@ public class Bullet {
 
 	}
 
+	/*
+	 * Methods for setting / getting coordinates
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}

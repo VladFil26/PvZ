@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Class for start window
+ */
 package PvZ;
 
 import javax.swing.*;
@@ -49,6 +53,9 @@ public class StartWindow {
 		instructionframe.setVisible(true);
 	}
 
+	/**
+	 *Method to make it pop up 
+	 **/
 	public void buttonPress(UI ui) {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

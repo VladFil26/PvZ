@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Class for UI
+ */
 package PvZ;
 
 import javax.swing.*;
@@ -80,6 +84,7 @@ public class UI {
 		menu[3].setIcon(imageShovel);
 		c.gridx = 6;
 		contentPane.add(plantLimit, c);
+		
 		// Making Board
 		for (int i = 0; i < board.length; i++) {
 			c.gridy = i + 1;
@@ -170,11 +175,10 @@ public class UI {
 			}
 		}
 
-		// For Timer
+		//Timer
 		int speed = 500;
 		num = 0;
 
-		// Timer
 		timer = new Timer(speed, new ActionListener() {
 
 			int c = 0;// zombies counter
@@ -196,9 +200,13 @@ public class UI {
 				}
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
+<<<<<<< HEAD
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
 						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
 						// + zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
+=======
+						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
+>>>>>>> branch 'develop' of https://github.com/VladFil26/PvZ.git
 					}
 				}
 				if (num % 6 == 0) {
@@ -246,6 +254,11 @@ public class UI {
 
 	}
 
+	/**
+	 * Method to remove plants when health becomes 0
+	 * @param x
+	 * @param y
+	 */
 	public void removePlant(int x, int y) {
 		for (int i = 0; i < peashooterArray.length; i++) {
 			if (peashooterArray[i].getX() == x && peashooterArray[i].getY() == y) {
@@ -270,19 +283,24 @@ public class UI {
 		}
 	}
 
+	/**
+	 * Method to end simulation if you win or lose
+	 */
 	public void endSimulation() {
 		for (int i = 0; i < zombieArray.length; i++) {
 			if (zombieArray[i].getHealth() != 0) {
 				status = null;
-
 			}
+
 			if (zombieArray[i].getY() == 0) {
 				status = "Lose";
+				i = zombieArray.length - 1;
 			}
+			
 			if (zombieArray[i].getHealth() <= 0) {
 				status = "Win";
-
 			}
+		
 		}
 		if (status != null) {
 			timer.stop();
