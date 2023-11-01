@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Class for peashooter plant
+ */
 package PvZ;
 
 public class Peashooter extends Plant {

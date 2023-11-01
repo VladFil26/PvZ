@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Zombie class
+ */
 package PvZ;
 
 import java.util.Random;
@@ -9,9 +13,6 @@ public class Zombie {
 
 	int x, y;
 
-	/**
-	 * Constructor
-	 */
 	public Zombie() {
 		Random r = new Random();
 		x = r.nextInt(0, 4);
@@ -19,6 +20,12 @@ public class Zombie {
 		health = 200;
 	}
 
+	/**
+	 * Method for eating plant
+	 * @param peashooters
+	 * @param potatomines
+	 * @param wallnuts
+	 */
 	public void eatPlant(Peashooter[] peashooters, PotatoMine[] potatomines, Wallnut[] wallnuts) {
 		if (health > 0) {
 			boolean t = false;
@@ -31,7 +38,6 @@ public class Zombie {
 						peashooters[i].setY(10);
 					}
 					t = true;
-					// System.out.println("Eating peashooter");
 				}
 			}
 
@@ -43,7 +49,7 @@ public class Zombie {
 					} else
 						potatomines[i].setY(10);
 					t = true;
-					// System.out.println("Eating potatomines");
+
 				}
 			}
 			for (int i = 0; i < wallnuts.length; i++) { // checking wallnuts array with same x and y
@@ -54,12 +60,11 @@ public class Zombie {
 						wallnuts[i].setY(10);
 					}
 					t = true;
-					// System.out.println("Eating wallnuts");
+
 				}
 			}
 
 			if (!t && y >= 1) {
-				// System.out.println("move");
 				y--;
 			}
 		} else {
@@ -67,7 +72,12 @@ public class Zombie {
 		}
 	}
 
-	public ImageIcon ZombPlantImage(UI ui) { // method for setting image zombie with plant
+	/**
+	 * Method for setting zombie image with plant (When it's eating plant) 
+	 * @param ui
+	 * @return
+	 */
+	public ImageIcon ZombPlantImage(UI ui) { 
 		for (int i = 0; i < ui.peashooterArray.length; i++) {
 			if (ui.peashooterArray[i].getX() == x && ui.peashooterArray[i].getY() == y) {
 				return ui.imagePeaShooterZombie;
@@ -87,16 +97,15 @@ public class Zombie {
 
 	}
 
+	/*
+	 * Methods to get / set coordinates
+	 */
 	public int getX() {
 		return x;
 	}
 
 	public int getY() {
 		return y;
-	}
-
-	public int getHealth() {
-		return health;
 	}
 
 	public void setY(int y) {
@@ -107,6 +116,13 @@ public class Zombie {
 		this.x = x;
 	}
 
+	/*
+	 * Methods to get / set health
+	 */
+	public int getHealth() {
+		return health;
+	}
+	
 	public void setHealth(int hp) {
 		health += hp;
 	}

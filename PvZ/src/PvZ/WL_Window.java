@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Ending window class
+ */
 package PvZ;
 
 import javax.swing.*;
@@ -29,6 +33,7 @@ public class WL_Window {
 		contentPane.add(winLoseLabel, c);
 		c.gridy = 1;
 		contentPane.add( restartButton, c);
+		
 		restartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);

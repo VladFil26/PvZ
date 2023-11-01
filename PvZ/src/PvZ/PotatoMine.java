@@ -1,3 +1,7 @@
+/*
+ * Oct - Nov 2023
+ * Class for Potatomine Plant
+ */
 package PvZ;
 
 public class PotatoMine extends Plant {
@@ -9,7 +13,7 @@ public class PotatoMine extends Plant {
 	}
 
 	/**
-	 * Method to explode. (aka. give damage to zombie, and take damage itself)
+	 * Method to explode
 	 */
 	public int explode() {
 		y = 10;
