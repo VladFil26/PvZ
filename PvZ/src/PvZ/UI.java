@@ -197,8 +197,8 @@ public class UI {
 				if (num % 10 == 0) {
 					for (int i = 0; i < zombieArray.length; i++) {
 						zombieArray[i].eatPlant(peashooterArray, potatoMineArray, wallnutArray);
-						//System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
-						//		+ zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
+						// System.out.println("Zombie " + i + " x: " + zombieArray[i].getX() + " y: "
+						// + zombieArray[i].getY() + " HP: " + zombieArray[i].getHealth());
 					}
 				}
 				if (num % 6 == 0) {
@@ -278,6 +278,7 @@ public class UI {
 			}
 			if (zombieArray[i].getY() == 0) {
 				status = "Lose";
+				i = zombieArray.length - 1;
 			}
 			if (zombieArray[i].getHealth() <= 0) {
 				status = "Win";
